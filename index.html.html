@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MOCHAYA — Coffee & Tea • Web3 • BNB Chain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Cairo:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--gold:#f4cf7f;--gold-deep:#d9a441;--gold-dark:#b9782e;--green:#8adf8e;--blue:#8db8ff;--bg:#0e0a07;--card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.09);--border-gold:rgba(213,162,77,0.28);--text:rgba(255,255,255,0.85);--muted:rgba(255,255,255,0.5)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo','Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+body.lang-zh{font-family:'Noto Sans SC','Cairo',sans-serif}
+.bg-layer{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 80% 50% at 10% 10%,rgba(191,140,71,.13),transparent 55%),radial-gradient(ellipse 60% 40% at 90% 80%,rgba(64,102,56,.13),transparent 50%),radial-gradient(ellipse 40% 30% at 50% 50%,rgba(255,223,153,.04),transparent 60%)}
+.grid-layer{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.055;background-image:linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px);background-size:48px 48px}
+.botanical-bg{position:fixed;inset:0;pointer-events:none;z-index:0}
+@keyframes sparkPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.12;transform:scale(0.6)}}
+/* TICKER */
+.ticker-bar{position:relative;z-index:10;background:rgba(0,0,0,.35);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);overflow:hidden;height:38px;display:flex;align-items:center}
+.ticker-track{display:flex;gap:48px;white-space:nowrap;animation:ticker 30s linear infinite;font-size:13px;color:var(--muted)}
+.ticker-track .gold{color:var(--gold);font-weight:700}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:rgba(14,10,7,.75);border-bottom:1px solid var(--border);backdrop-filter:blur(20px)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px;gap:10px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-icon{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#f6d27b,#d9a441,#8c5a1d);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#1a120c;box-shadow:0 0 28px rgba(244,207,127,.3);flex-shrink:0}
+.logo-text strong{display:block;font-size:18px;font-weight:900;color:#fff}
+.logo-text small{font-size:11px;color:var(--muted);letter-spacing:.08em}
+.nav-links{display:flex;gap:22px;list-style:none}
+.nav-links a{text-decoration:none;font-size:13px;font-weight:600;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+/* LANG SWITCHER */
+.lang-switcher{display:flex;gap:3px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;padding:3px}
+.lang-btn{padding:5px 11px;border-radius:9px;border:none;background:transparent;color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.lang-btn.active{background:var(--gold);color:#1a120c}
+.lang-btn:hover:not(.active){color:var(--gold)}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:14px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;border:none}
+.btn-ghost{background:transparent;border:1px solid var(--border-gold);color:var(--gold)}
+.btn-ghost:hover{background:rgba(244,207,127,.08)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-deep),var(--gold-dark));color:#1a120c;box-shadow:0 8px 28px rgba(214,156,67,.28)}
+.btn-gold:hover{box-shadow:0 12px 36px rgba(214,156,67,.4);transform:translateY(-1px)}
+/* HERO */
+.hero{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:80px 24px 60px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding:48px 20px 40px}}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:99px;border:1px solid rgba(213,162,77,.22);background:rgba(244,207,127,.08);font-size:12px;color:var(--gold);margin-bottom:24px}
+.hero-badge::before{content:'●';font-size:8px;animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-family:'Playfair Display',serif;font-size:clamp(42px,7vw,78px);font-weight:900;line-height:.96;margin-bottom:24px}
+body.lang-zh h1{font-family:'Noto Sans SC',sans-serif;font-weight:900}
+h1 .line-gold{color:var(--gold);display:block}
+h1 .line-white{color:#fff;display:block}
+h1 .line-muted{color:rgba(255,255,255,.75);display:block}
+.hero-desc{font-size:17px;color:rgba(255,255,255,.72);line-height:2;max-width:540px;margin-bottom:10px}
+.hero-sub{font-size:14px;color:var(--muted);line-height:1.9;max-width:520px;margin-bottom:36px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero-card{width:100%;aspect-ratio:4/3;border-radius:32px;border:1px solid var(--border-gold);background:linear-gradient(160deg,#18100a,#0e0a06,#0a0805);box-shadow:0 20px 80px rgba(0,0,0,.7),0 0 60px rgba(180,100,20,.12);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;min-height:340px}
+.hero-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(244,207,127,.12),transparent 60%)}
+.bean{width:180px;height:230px;border-radius:48% 52% 46% 54%/58% 42% 58% 42%;background:radial-gradient(circle at 30% 28%,#8f6239 0%,#6a4426 26%,#4c2f19 58%,#2a180e 88%);border:1px solid rgba(141,98,58,.3);box-shadow:inset -16px -22px 30px rgba(18,9,5,.5),inset 14px 18px 24px rgba(196,147,93,.18),0 30px 80px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;animation:floatBean 6s ease-in-out infinite;position:relative}
+.bean::after{content:'';position:absolute;top:8%;left:34%;right:34%;bottom:8%;border-radius:50%;background:linear-gradient(180deg,rgba(42,22,10,.95),rgba(18,10,6,.9))}
+.bean-label{position:relative;z-index:2;text-align:center}
+.bean-label .m{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;color:#f2d48a;text-shadow:0 4px 10px rgba(0,0,0,.35);display:block}
+.bean-label small{display:block;font-size:9px;letter-spacing:.32em;color:rgba(242,212,138,.8);margin-top:4px}
+@keyframes floatBean{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-12px) rotate(-2deg)}}
+.hero-stat{position:absolute;border-radius:18px;border:1px solid var(--border);background:rgba(26,18,13,.88);backdrop-filter:blur(12px);padding:12px 18px}
+.hero-stat .label{font-size:11px;color:var(--muted);margin-bottom:4px}
+.hero-stat .value{font-size:18px;font-weight:900;color:var(--gold);font-family:'JetBrains Mono',monospace}
+.hero-stat.top-left{top:20px;left:20px}
+.hero-stat.bottom-right{bottom:20px;right:20px}
+/* STATS STRIP */
+.stats-strip{max-width:1280px;margin:0 auto;padding:0 24px 48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:16px;position:relative;z-index:1}
+.stat-card{border-radius:24px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));padding:24px;backdrop-filter:blur(12px);box-shadow:0 16px 48px rgba(0,0,0,.22)}
+.stat-card .s-label{font-size:12px;color:var(--muted);margin-bottom:8px}
+.stat-card .s-value{font-size:20px;font-weight:900;color:var(--gold);font-family:'Playfair Display',serif}
+/* SECTIONS */
+section{position:relative;z-index:1}
+.section-inner{max-width:1280px;margin:0 auto;padding:72px 24px}
+.section-tag{font-size:13px;color:var(--gold);font-weight:700;margin-bottom:8px;letter-spacing:.06em}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);font-weight:900;margin-bottom:16px}
+body.lang-zh .section-title{font-family:'Noto Sans SC',sans-serif}
+.section-desc{font-size:16px;color:var(--muted);line-height:2;max-width:640px;margin-bottom:40px}
+/* CARDS */
+.cards-grid{display:grid;gap:20px}
+.c2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.c3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.c4{grid-template-columns:repeat(auto-fit,minmax(218px,1fr))}
+.card{border-radius:28px;border:1px solid var(--border);background:var(--card);backdrop-filter:blur(12px);padding:28px;box-shadow:0 16px 48px rgba(0,0,0,.2);transition:all .3s}
+.card:hover{border-color:rgba(244,207,127,.32);box-shadow:0 24px 64px rgba(214,156,67,.18);transform:translateY(-2px)}
+.card-gold{border:1px solid var(--border-gold);background:linear-gradient(145deg,rgba(244,207,127,.1),rgba(255,255,255,.02))}
+.card-icon{font-size:36px;margin-bottom:16px;display:block}
+.card-title{font-size:18px;font-weight:800;color:var(--gold);margin-bottom:10px}
+.card-text{font-size:15px;color:var(--muted);line-height:1.9}
+/* MARKET */
+.market-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:24px}
+.market-card{border-radius:26px;border:1px solid var(--border-gold);background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.025));padding:24px;backdrop-filter:blur(12px);box-shadow:0 20px 60px rgba(0,0,0,.3);transition:all .4s}
+.market-card:hover{border-color:var(--gold);box-shadow:0 24px 72px rgba(244,207,127,.22)}
+.market-card .m-label{font-size:12px;color:var(--muted);margin-bottom:8px}
+.market-card .m-value{font-size:24px;font-weight:900;color:var(--gold);font-family:'JetBrains Mono',monospace}
+.contract-box{border-radius:24px;border:1px solid var(--border-gold);background:linear-gradient(180deg,rgba(244,207,127,.09),rgba(255,255,255,.025));padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.contract-addr{font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(255,255,255,.85);word-break:break-all}
+.contract-label{font-size:12px;color:var(--gold);margin-bottom:6px;font-weight:700}
+/* TOKENOMICS */
+.toko-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+@media(max-width:800px){.toko-grid{grid-template-columns:1fr}}
+.donut-wrap{position:relative;width:280px;margin:0 auto}
+.donut-svg{width:100%;display:block}
+.donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.donut-center .dc-name{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold)}
+.donut-center .dc-supply{font-size:12px;color:var(--muted);margin-top:4px}
+.toko-list{list-style:none;display:flex;flex-direction:column;gap:14px}
+.toko-item{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:20px;border:1px solid var(--border);background:var(--card);transition:all .25s}
+.toko-item:hover{border-color:rgba(244,207,127,.28);background:rgba(255,255,255,.06)}
+.toko-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
+.toko-info{flex:1}
+.toko-info strong{font-size:15px;font-weight:700;display:block}
+.toko-info small{font-size:12px;color:var(--muted)}
+.toko-pct{font-size:22px;font-weight:900;color:var(--gold);font-family:'Playfair Display',serif}
+/* ROADMAP */
+.roadmap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.rm-card{border-radius:24px;padding:28px;border:1px solid var(--border);background:var(--card);position:relative;overflow:hidden}
+.rm-card::before{content:attr(data-phase);position:absolute;bottom:-10px;right:-4px;font-family:'Playfair Display',serif;font-size:80px;font-weight:900;color:rgba(244,207,127,.06);line-height:1}
+[dir="ltr"] .rm-card::before{right:auto;left:-4px}
+.rm-phase{font-size:12px;color:var(--gold);font-weight:700;margin-bottom:10px;letter-spacing:.08em}
+.rm-title{font-size:18px;font-weight:800;margin-bottom:12px}
+.rm-items{list-style:none;display:flex;flex-direction:column;gap:7px}
+.rm-items li{font-size:13px;color:var(--muted);padding-right:18px;position:relative}
+.rm-items li::before{content:'✦';position:absolute;right:0;font-size:9px;color:var(--gold);top:3px}
+[dir="ltr"] .rm-items li{padding-right:0;padding-left:18px}
+[dir="ltr"] .rm-items li::before{right:auto;left:0}
+/* SECURITY */
+.sec-badges{display:flex;flex-wrap:wrap;gap:12px}
+.sec-badge{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:18px;border:1px solid var(--border);background:rgba(0,0,0,.25);font-size:13px;font-weight:700;color:rgba(255,255,255,.75)}
+.sec-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);flex-shrink:0}
+/* PLATFORMS */
+.platform-link{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:18px;border:1px solid var(--border);background:rgba(255,255,255,.04);font-size:13px;font-weight:700;color:rgba(255,255,255,.7);text-decoration:none;transition:all .2s}
+.platform-link:hover{border-color:var(--border-gold);color:var(--gold);background:rgba(244,207,127,.06)}
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.team-card{border-radius:28px;padding:32px 24px;text-align:center;border:1px solid var(--border-gold);background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.02));transition:all .3s}
+.team-card:hover{border-color:var(--gold);box-shadow:0 20px 56px rgba(244,207,127,.16)}
+.team-avatar{width:64px;height:64px;border-radius:18px;margin:0 auto 16px;background:linear-gradient(135deg,var(--gold),var(--gold-deep),var(--gold-dark));color:#1a120c;font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;box-shadow:0 10px 30px rgba(244,207,127,.28)}
+.team-name{font-size:17px;font-weight:800;color:var(--gold);margin-bottom:6px}
+.team-role{font-size:13px;color:var(--muted);line-height:1.7}
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:14px}
+details.faq-item{border-radius:22px;border:1px solid var(--border);background:var(--card);overflow:hidden}
+details.faq-item[open]{border-color:var(--border-gold)}
+summary.faq-q{padding:22px 28px;font-size:16px;font-weight:700;color:var(--gold);cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px}
+summary.faq-q::after{content:'+';font-size:22px;color:var(--gold)}
+details[open] summary.faq-q::after{content:'−'}
+.faq-a{padding:0 28px 22px;font-size:15px;color:var(--muted);line-height:1.9}
+/* FOOTER */
+footer{position:relative;z-index:1;border-top:1px solid var(--border);background:rgba(0,0,0,.3);backdrop-filter:blur(16px)}
+.footer-inner{max-width:1280px;margin:0 auto;padding:48px 24px 36px}
+.footer-top{display:flex;align-items:flex-start;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:36px}
+.footer-brand .brand-desc{font-size:14px;color:var(--muted);line-height:1.9;max-width:300px;margin-top:14px}
+.footer-links h4{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:14px;letter-spacing:.06em}
+.footer-links ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-links ul a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-links ul a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+/* FEED */
+.feed-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:99px;background:rgba(138,223,142,.12);border:1px solid rgba(138,223,142,.25);font-size:12px;color:var(--green);font-weight:700}
+.feed-pill::before{content:'●';font-size:8px;animation:blink 1.4s ease-in-out infinite}
+.buy-feed{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.buy-feed-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-radius:18px;border:1px solid var(--border);background:rgba(0,0,0,.22)}
+.buy-feed-item .wallet{font-family:'JetBrains Mono',monospace;font-size:13px}
+.buy-feed-item .amount{font-weight:900;color:var(--gold);font-size:14px}
+.buy-feed-item .ago{font-size:11px;color:var(--muted)}
+.buy-tag{padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700}
+.buy-tag.buy{background:rgba(138,223,142,.14);color:var(--green)}
+.buy-tag.add{background:rgba(141,184,255,.14);color:var(--blue)}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{width:100%;max-width:540px;border-radius:32px;border:1px solid var(--border);background:linear-gradient(180deg,#1b130d,#120d09);padding:36px;box-shadow:0 20px 80px rgba(0,0,0,.5);transform:translateY(24px);transition:transform .3s}
+.modal-overlay.open .modal-box{transform:translateY(0)}
+.modal-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px}
+.modal-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:900}
+.modal-sub{font-size:12px;color:var(--gold);margin-bottom:4px}
+.modal-close{background:rgba(255,255,255,.07);border:1px solid var(--border);border-radius:12px;padding:8px 16px;color:#fff;cursor:pointer;font-family:inherit;font-size:13px}
+.modal-close:hover{background:rgba(255,255,255,.12)}
+.copy-addr{font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(255,255,255,.85);word-break:break-all}
+/* MISC */
+.divider{height:1px;background:var(--border);max-width:1280px;margin:0 auto}
+.flex-wrap-gap{display:flex;flex-wrap:wrap;gap:12px}
+.mt-4{margin-top:16px}.mt-6{margin-top:24px}.mt-8{margin-top:32px}
+@media(max-width:680px){.nav-links{display:none}.section-inner{padding:48px 18px}}
+</style>
+</head>
+<body class="lang-ar">
+<div class="bg-layer"></div>
+<div class="grid-layer"></div>
+
+<!-- BOTANICAL BACKGROUND -->
+<div class="botanical-bg" aria-hidden="true">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:1" preserveAspectRatio="xMidYMid slice">
+<defs>
+  <radialGradient id="bgGrad" cx="50%" cy="50%" r="70%">
+    <stop offset="0%" stop-color="#0e0a07"/>
+    <stop offset="100%" stop-color="#060402"/>
+  </radialGradient>
+
+  <!-- Coffee bean shape -->
+  <symbol id="bean" viewBox="0 0 40 56">
+    <ellipse cx="20" cy="28" rx="14" ry="20" fill="#5a3418" />
+    <ellipse cx="20" cy="28" rx="10" ry="16" fill="#4a2c12"/>
+    <path d="M20 10 Q24 28 20 46" stroke="#7a4a22" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="20" cy="28" rx="14" ry="20" fill="none" stroke="#7a4820" stroke-width="0.8" opacity="0.5"/>
+  </symbol>
+
+  <!-- Tea leaf shape -->
+  <symbol id="leaf" viewBox="0 0 44 80">
+    <path d="M22 4 C36 14 40 34 36 54 C34 64 28 72 22 76 C16 72 10 64 8 54 C4 34 8 14 22 4Z" fill="#2d5a2a"/>
+    <path d="M22 4 C22 4 22 76 22 76" stroke="#3d7a38" stroke-width="1.5" fill="none"/>
+    <path d="M22 20 C28 24 32 30 34 38" stroke="#3d7a38" stroke-width="1" fill="none" opacity="0.7"/>
+    <path d="M22 20 C16 24 12 30 10 38" stroke="#3d7a38" stroke-width="1" fill="none" opacity="0.7"/>
+    <path d="M22 36 C29 39 33 46 34 54" stroke="#3d7a38" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M22 36 C15 39 11 46 10 54" stroke="#3d7a38" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M22 4 C36 14 40 34 36 54 C34 64 28 72 22 76 C16 72 10 64 8 54 C4 34 8 14 22 4Z" fill="none" stroke="#4a8a44" stroke-width="0.6" opacity="0.4"/>
+  </symbol>
+
+  <!-- Small star/sparkle for accent -->
+  <symbol id="spark" viewBox="0 0 12 12">
+    <circle cx="6" cy="6" r="1.5" fill="#f4cf7f" opacity="0.6"/>
+    <line x1="6" y1="0" x2="6" y2="12" stroke="#f4cf7f" stroke-width="0.6" opacity="0.3"/>
+    <line x1="0" y1="6" x2="12" y2="6" stroke="#f4cf7f" stroke-width="0.6" opacity="0.3"/>
+  </symbol>
+</defs>
+
+<!-- ── Deep background gradient ── -->
+<rect width="100%" height="100%" fill="url(#bgGrad)"/>
+
+<!-- ═══════════════════════════════════════
+     COFFEE BEANS — scattered naturally
+     ═══════════════════════════════════════ -->
+
+<!-- Top-left cluster -->
+<use href="#bean" x="-8" y="40" width="36" height="50" opacity="0.18" transform="rotate(-30, 10, 65)"/>
+<use href="#bean" x="28" y="10" width="30" height="42" opacity="0.14" transform="rotate(15, 43, 31)"/>
+<use href="#bean" x="55" y="55" width="24" height="34" opacity="0.10" transform="rotate(-55, 67, 72)"/>
+<use href="#bean" x="5" y="130" width="28" height="40" opacity="0.12" transform="rotate(25, 19, 150)"/>
+<use href="#bean" x="80" y="20" width="20" height="28" opacity="0.09" transform="rotate(40, 90, 34)"/>
+
+<!-- Top-right area -->
+<use href="#bean" x="78%" y="15" width="38" height="54" opacity="0.16" transform="rotate(-20, 80%, 42)"/>
+<use href="#bean" x="88%" y="60" width="26" height="36" opacity="0.12" transform="rotate(50, 90%, 78)"/>
+<use href="#bean" x="72%" y="5" width="22" height="30" opacity="0.10" transform="rotate(-70, 73%, 20)"/>
+<use href="#bean" x="94%" y="110" width="30" height="42" opacity="0.14" transform="rotate(10, 96%, 131)"/>
+
+<!-- Mid-left -->
+<use href="#bean" x="-5" y="35%" width="32" height="45" opacity="0.13" transform="rotate(60, 11, 37%)"/>
+<use href="#bean" x="40" y="42%" width="20" height="28" opacity="0.09" transform="rotate(-40, 50, 43%)"/>
+<use href="#bean" x="-10" y="55%" width="36" height="50" opacity="0.15" transform="rotate(20, 8, 56%)"/>
+
+<!-- Mid-right -->
+<use href="#bean" x="90%" y="38%" width="34" height="48" opacity="0.14" transform="rotate(-35, 92%, 40%)"/>
+<use href="#bean" x="80%" y="50%" width="22" height="30" opacity="0.10" transform="rotate(55, 81%, 51%)"/>
+<use href="#bean" x="95%" y="62%" width="28" height="40" opacity="0.13" transform="rotate(-15, 96%, 64%)"/>
+
+<!-- Bottom area -->
+<use href="#bean" x="10" y="78%" width="30" height="42" opacity="0.14" transform="rotate(35, 25, 80%)"/>
+<use href="#bean" x="55" y="85%" width="24" height="34" opacity="0.11" transform="rotate(-45, 67, 87%)"/>
+<use href="#bean" x="20%" y="88%" width="36" height="50" opacity="0.16" transform="rotate(20, 22%, 90%)"/>
+<use href="#bean" x="45%" y="82%" width="20" height="28" opacity="0.09" transform="rotate(-60, 46%, 83%)"/>
+<use href="#bean" x="65%" y="90%" width="32" height="45" opacity="0.13" transform="rotate(30, 66%, 92%)"/>
+<use href="#bean" x="85%" y="80%" width="26" height="36" opacity="0.11" transform="rotate(-25, 86%, 82%)"/>
+<use href="#bean" x="92%" y="87%" width="38" height="54" opacity="0.15" transform="rotate(45, 93%, 90%)"/>
+
+<!-- Center scattered (very faint) -->
+<use href="#bean" x="30%" y="25%" width="18" height="25" opacity="0.06" transform="rotate(70, 31%, 26%)"/>
+<use href="#bean" x="60%" y="35%" width="16" height="22" opacity="0.05" transform="rotate(-50, 61%, 36%)"/>
+<use href="#bean" x="50%" y="65%" width="20" height="28" opacity="0.06" transform="rotate(30, 51%, 66%)"/>
+<use href="#bean" x="20%" y="55%" width="14" height="20" opacity="0.05" transform="rotate(-80, 21%, 56%)"/>
+<use href="#bean" x="75%" y="70%" width="18" height="25" opacity="0.06" transform="rotate(15, 76%, 71%)"/>
+
+<!-- ═══════════════════════════════════════
+     TEA LEAVES — elegant, elongated
+     ═══════════════════════════════════════ -->
+
+<!-- Top-left leaves -->
+<use href="#leaf" x="110" y="-20" width="32" height="58" opacity="0.15" transform="rotate(40, 126, 9)"/>
+<use href="#leaf" x="160" y="30" width="24" height="44" opacity="0.11" transform="rotate(-20, 172, 52)"/>
+<use href="#leaf" x="30" y="200" width="28" height="50" opacity="0.13" transform="rotate(65, 44, 225)"/>
+<use href="#leaf" x="70" y="150" width="20" height="36" opacity="0.09" transform="rotate(-50, 80, 168)"/>
+
+<!-- Top-right leaves -->
+<use href="#leaf" x="82%" y="-10" width="36" height="64" opacity="0.16" transform="rotate(-30, 84%, 22)"/>
+<use href="#leaf" x="74%" y="40" width="26" height="46" opacity="0.12" transform="rotate(55, 76%, 63)"/>
+<use href="#leaf" x="90%" y="160" width="30" height="54" opacity="0.14" transform="rotate(-70, 91%, 187)"/>
+
+<!-- Mid-left leaves -->
+<use href="#leaf" x="-15" y="44%" width="40" height="72" opacity="0.17" transform="rotate(25, 5, 46%)"/>
+<use href="#leaf" x="50" y="60%" width="22" height="40" opacity="0.10" transform="rotate(-35, 61, 62%)"/>
+<use href="#leaf" x="-8" y="70%" width="30" height="54" opacity="0.14" transform="rotate(80, 7, 72%)"/>
+
+<!-- Mid-right leaves -->
+<use href="#leaf" x="88%" y="44%" width="36" height="64" opacity="0.15" transform="rotate(-45, 90%, 47%)"/>
+<use href="#leaf" x="78%" y="58%" width="24" height="44" opacity="0.11" transform="rotate(30, 80%, 60%)"/>
+
+<!-- Bottom leaves -->
+<use href="#leaf" x="5%" y="82%" width="34" height="62" opacity="0.15" transform="rotate(50, 7%, 85%)"/>
+<use href="#leaf" x="38%" y="86%" width="26" height="46" opacity="0.12" transform="rotate(-25, 40%, 88%)"/>
+<use href="#leaf" x="58%" y="78%" width="30" height="54" opacity="0.13" transform="rotate(70, 60%, 80%)"/>
+<use href="#leaf" x="76%" y="84%" width="22" height="40" opacity="0.10" transform="rotate(-60, 78%, 86%)"/>
+
+<!-- Center faint leaves -->
+<use href="#leaf" x="25%" y="30%" width="18" height="32" opacity="0.05" transform="rotate(45, 26%, 32%)"/>
+<use href="#leaf" x="68%" y="22%" width="16" height="28" opacity="0.04" transform="rotate(-35, 69%, 24%)"/>
+<use href="#leaf" x="42%" y="72%" width="20" height="36" opacity="0.05" transform="rotate(60, 43%, 74%)"/>
+
+<!-- ═══════════════════════════════════════
+     GOLD SPARKLES / DUST
+     ═══════════════════════════════════════ -->
+<use href="#spark" x="15%" y="18%" width="12" height="12" opacity="0.5"/>
+<use href="#spark" x="78%" y="12%" width="10" height="10" opacity="0.4"/>
+<use href="#spark" x="8%" y="62%" width="8" height="8" opacity="0.3"/>
+<use href="#spark" x="92%" y="45%" width="12" height="12" opacity="0.45"/>
+<use href="#spark" x="48%" y="8%" width="10" height="10" opacity="0.35"/>
+<use href="#spark" x="35%" y="90%" width="8" height="8" opacity="0.3"/>
+<use href="#spark" x="66%" y="78%" width="12" height="12" opacity="0.4"/>
+<use href="#spark" x="22%" y="45%" width="6" height="6" opacity="0.25"/>
+<use href="#spark" x="84%" y="68%" width="10" height="10" opacity="0.35"/>
+
+<!-- ── Soft vignette overlay to keep edges dark ── -->
+<radialGradient id="vig" cx="50%" cy="50%" r="70%">
+  <stop offset="0%" stop-color="transparent"/>
+  <stop offset="100%" stop-color="#060402" stop-opacity="0.75"/>
+</radialGradient>
+<rect width="100%" height="100%" fill="url(#vig)"/>
+
+<!-- ── Central glow spots for depth ── -->
+<radialGradient id="glow1" cx="15%" cy="20%" r="30%">
+  <stop offset="0%" stop-color="#c47a28" stop-opacity="0.08"/>
+  <stop offset="100%" stop-color="transparent"/>
+</radialGradient>
+<rect width="100%" height="100%" fill="url(#glow1)"/>
+
+<radialGradient id="glow2" cx="85%" cy="75%" r="25%">
+  <stop offset="0%" stop-color="#2d6b28" stop-opacity="0.09"/>
+  <stop offset="100%" stop-color="transparent"/>
+</radialGradient>
+<rect width="100%" height="100%" fill="url(#glow2)"/>
+
+<radialGradient id="glow3" cx="50%" cy="50%" r="20%">
+  <stop offset="0%" stop-color="#f4cf7f" stop-opacity="0.03"/>
+  <stop offset="100%" stop-color="transparent"/>
+</radialGradient>
+<rect width="100%" height="100%" fill="url(#glow3)"/>
+</svg>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-track">
+    <span class="gold">MAYA</span>
+    <span id="tk-price-lbl">السعر</span>: <span id="t-price">...</span>
+    &nbsp;&nbsp;
+    <span id="tk-mcap-lbl">القيمة السوقية</span>: <span id="t-mcap">...</span>
+    &nbsp;&nbsp;
+    <span id="tk-vol-lbl">حجم 24س</span>: <span id="t-vol">...</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="gold">MOCHAYA</span>
+    <span id="tk-price-lbl2">السعر</span>: <span id="t-price2">...</span>
+    &nbsp;&nbsp;
+    <span id="tk-mcap-lbl2">القيمة السوقية</span>: <span id="t-mcap2">...</span>
+    &nbsp;&nbsp;
+    <span id="tk-vol-lbl2">حجم 24س</span>: <span id="t-vol2">...</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="logo">
+      <div class="logo-icon">M</div>
+      <div class="logo-text"><strong>MOCHAYA</strong><small>Coffee • Tea • Blockchain</small></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#story" data-i18n="nav_story">القصة</a></li>
+      <li><a href="#market" data-i18n="nav_market">السوق</a></li>
+      <li><a href="#tokenomics" data-i18n="nav_tokenomics">التوكنوميكس</a></li>
+      <li><a href="#security" data-i18n="nav_security">الأمان</a></li>
+      <li><a href="#roadmap" data-i18n="nav_roadmap">خارطة الطريق</a></li>
+      <li><a href="#team" data-i18n="nav_team">الفريق</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="ar" onclick="setLang('ar')">العربية</button>
+        <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中文</button>
+      </div>
+      <button class="btn btn-ghost" id="wallet-btn" onclick="connectWallet()" data-i18n="connect_wallet">اتصل بالمحفظة</button>
+      <button class="btn btn-gold" onclick="openModal()" data-i18n="buy_maya">شراء MAYA</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero">
+    <div>
+      <div class="hero-badge">Premium Coffee Brand • Web3 Utility • BNB Chain</div>
+      <h1>
+        <span class="line-gold">MOCHAYA</span>
+        <span class="line-white" data-i18n="hero_title1">منصة قهوة وشاي</span>
+        <span class="line-muted" data-i18n="hero_title2">بهوية Web3 استثمارية</span>
+      </h1>
+      <p class="hero-desc" data-i18n="hero_desc">MOCHAYA يبني علامة تجارية فاخرة في القهوة والشاي مع طبقة رقمية استثمارية مدعومة بتوكن MAYA على BNB Chain.</p>
+      <p class="hero-sub" data-i18n="hero_sub">جاهزية للمنصات، وضوح للمستثمر، وهوية تجارية قابلة للتوسع عالميًا.</p>
+      <div class="hero-ctas">
+        <a href="#market" class="btn btn-gold" data-i18n="explore">استكشف المشروع</a>
+        <a href="#tokenomics" class="btn btn-ghost" data-i18n="view_tokenomics">عرض التوكنوميكس</a>
+      </div>
+    </div>
+    <div>
+      <div class="hero-card">
+        <div class="hero-stat top-left">
+          <div class="label" data-i18n="live_price">السعر المباشر</div>
+          <div class="value" id="h-price">...</div>
+        </div>
+        <div class="hero-stat bottom-right">
+          <div class="label" data-i18n="holders">الحاملون</div>
+          <div class="value" id="h-holders">--</div>
+        </div>
+        <canvas id="bean3d" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-card"><div class="s-label" data-i18n="stat_name">اسم التوكن</div><div class="s-value">MOCHAYA Token</div></div>
+  <div class="stat-card"><div class="s-label" data-i18n="stat_ticker">الرمز</div><div class="s-value">MAYA</div></div>
+  <div class="stat-card"><div class="s-label" data-i18n="stat_network">الشبكة</div><div class="s-value">BNB Chain</div></div>
+  <div class="stat-card"><div class="s-label" data-i18n="stat_supply">المعروض الكلي</div><div class="s-value">25,000,000</div></div>
+  <div class="stat-card"><div class="s-label" data-i18n="stat_wallet">المحفظة</div><div class="s-value" id="wallet-display" data-i18n="not_connected">غير متصل</div></div>
+  <div class="stat-card"><div class="s-label" data-i18n="stat_balance">رصيد MAYA</div><div class="s-value" id="balance-display">--</div></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- STORY -->
+<section id="story">
+  <div class="section-inner">
+    <div class="section-tag" data-i18n="story_tag">القصة</div>
+    <h2 class="section-title" data-i18n="story_title">علامة قهوة عالمية</h2>
+    <p class="section-desc" data-i18n="story_desc">MOCHAYA يجمع بين علامة تجارية فاخرة للقهوة والشاي وبين بنية رقمية تضيف بعدًا استثماريًا، مجتمعيًا، وتجاريًا طويل المدى.</p>
+    <div class="cards-grid c4">
+      <div class="card card-gold"><span class="card-icon">🌍</span><div class="card-title" data-i18n="biz1_t">الاستيراد</div><div class="card-text" data-i18n="biz1_d">استيراد القهوة والشاي من المزارع والأسواق العالمية.</div></div>
+      <div class="card card-gold"><span class="card-icon">☕</span><div class="card-title" data-i18n="biz2_t">التحميص والتعبئة</div><div class="card-text" data-i18n="biz2_d">التحميص والتعبئة والتغليف تحت علامة MOCHAYA الفاخرة.</div></div>
+      <div class="card card-gold"><span class="card-icon">🏪</span><div class="card-title" data-i18n="biz3_t">التوزيع</div><div class="card-text" data-i18n="biz3_d">التوزيع على المقاهي والمتاجر والشركاء التجاريين.</div></div>
+      <div class="card card-gold"><span class="card-icon">🔗</span><div class="card-title" data-i18n="biz4_t">مكافآت MAYA</div><div class="card-text" data-i18n="biz4_d">ربط التجارة الفعلية بمكافآت MOCHAYA Token على البلوكتشين.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MARKET -->
+<section id="market">
+  <div class="section-inner">
+    <div class="section-tag" data-i18n="market_tag">السوق المباشر</div>
+    <h2 class="section-title" data-i18n="market_title">بيانات السوق المباشرة</h2>
+    <div class="feed-pill" style="margin-bottom:28px" data-i18n="market_live">مباشر من Dexscreener</div>
+    <div class="market-cards">
+      <div class="market-card"><div class="m-label" data-i18n="live_price">السعر المباشر</div><div class="m-value" id="m-price">...</div></div>
+      <div class="market-card"><div class="m-label" data-i18n="liquidity">السيولة</div><div class="m-value" id="m-liq">...</div></div>
+      <div class="market-card"><div class="m-label" data-i18n="vol24">حجم 24 ساعة</div><div class="m-value" id="m-vol">...</div></div>
+      <div class="market-card"><div class="m-label" data-i18n="mcap">القيمة السوقية</div><div class="m-value" id="m-mcap">...</div></div>
+      <div class="market-card"><div class="m-label" data-i18n="holders">عدد الحاملين</div><div class="m-value" id="m-holders">--</div></div>
+    </div>
+    <div class="contract-box">
+      <div>
+        <div class="contract-label" data-i18n="contract_label">عنوان العقد</div>
+        <div class="contract-addr">0xac3c64593E02beB728a3891cC5EDf05264484444</div>
+      </div>
+      <button class="btn btn-ghost" onclick="copyContract()" id="copy-btn" data-i18n="copy_contract">نسخ العقد</button>
+    </div>
+    <div class="flex-wrap-gap mt-6">
+      <a href="https://dexscreener.com/bsc/0xac3c64593E02beB728a3891cC5EDf05264484444" target="_blank" class="platform-link">📊 Dexscreener</a>
+      <a href="https://bscscan.com/token/0xac3c64593E02beB728a3891cC5EDf05264484444" target="_blank" class="platform-link">🔍 BscScan</a>
+      <a href="https://pancakeswap.finance/swap?outputCurrency=0xac3c64593E02beB728a3891cC5EDf05264484444" target="_blank" class="platform-link">🥞 PancakeSwap</a>
+    </div>
+    <div class="mt-8">
+      <div class="section-tag" data-i18n="feed_tag">آخر عمليات الشراء</div>
+      <div class="buy-feed" id="buy-feed-container">
+        <div id="feed-loading" style="text-align:center;padding:32px 0;color:var(--muted);">
+          <div style="font-size:28px;margin-bottom:10px">⏳</div>
+          <div data-i18n="feed_loading" style="font-size:14px">جاري تحميل بيانات التداول...</div>
+          <a href="https://bscscan.com/token/0xac3c64593E02beB728a3891cC5EDf05264484444#transactions" target="_blank"
+             style="display:inline-block;margin-top:14px;color:var(--gold);font-size:13px;text-decoration:none;border:1px solid var(--border);padding:8px 18px;border-radius:99px;">
+            🔍 عرض المعاملات على BscScan
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TOKENOMICS -->
+<section id="tokenomics">
+  <div class="section-inner">
+    <div class="section-tag" data-i18n="toko_tag">التوكنوميكس</div>
+    <h2 class="section-title" data-i18n="toko_title">اقتصاد MOCHAYA Token</h2>
+    <p class="section-desc" data-i18n="toko_desc">توزيع عادل ومتوازن يضمن استدامة المشروع على المدى البعيد.</p>
+    <div class="toko-grid">
+      <div class="donut-wrap">
+        <svg class="donut-svg" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#1e1510" stroke-width="36"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#f4cf7f" stroke-width="36" stroke-dasharray="100.5 401.9" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#d9a441" stroke-width="36" stroke-dasharray="100.5 401.9" stroke-dashoffset="-100.5" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#b9782e" stroke-width="36" stroke-dasharray="100.5 401.9" stroke-dashoffset="-201" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#4f7d46" stroke-width="36" stroke-dasharray="100.5 401.9" stroke-dashoffset="-301.5" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#7e5b2f" stroke-width="36" stroke-dasharray="100.5 401.9" stroke-dashoffset="-402" transform="rotate(-90 100 100)"/>
+        </svg>
+        <div class="donut-center"><div class="dc-name">MAYA</div><div class="dc-supply">25M Supply</div></div>
+      </div>
+      <ul class="toko-list">
+        <li class="toko-item"><div class="toko-dot" style="background:#f4cf7f"></div><div class="toko-info"><strong data-i18n="toko_liq">السيولة</strong><small>5,000,000 MAYA</small></div><div class="toko-pct">20%</div></li>
+        <li class="toko-item"><div class="toko-dot" style="background:#d9a441"></div><div class="toko-info"><strong data-i18n="toko_dev">التطوير</strong><small>5,000,000 MAYA</small></div><div class="toko-pct">20%</div></li>
+        <li class="toko-item"><div class="toko-dot" style="background:#b9782e"></div><div class="toko-info"><strong data-i18n="toko_mkt">التسويق</strong><small>5,000,000 MAYA</small></div><div class="toko-pct">20%</div></li>
+        <li class="toko-item"><div class="toko-dot" style="background:#4f7d46"></div><div class="toko-info"><strong data-i18n="toko_com">المجتمع</strong><small>5,000,000 MAYA</small></div><div class="toko-pct">20%</div></li>
+        <li class="toko-item"><div class="toko-dot" style="background:#7e5b2f"></div><div class="toko-info"><strong data-i18n="toko_res">الاحتياطي</strong><small>5,000,000 MAYA</small></div><div class="toko-pct">20%</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECURITY -->
+<section id="security">
+  <div class="section-inner">
+    <div class="section-tag" data-i18n="sec_tag">الأمان والشفافية</div>
+    <h2 class="section-title" data-i18n="sec_title">الأمان والسيولة</h2>
+    <p class="section-desc" data-i18n="sec_desc">ملخص بصري سريع للعناصر التي تهم المستثمر: العقد، الشفافية، المصادر، والجاهزية التشغيلية.</p>
+    <div class="sec-badges">
+      <div class="sec-badge"><div class="dot"></div><span data-i18n="sec1">عقد منشور على BscScan</span></div>
+      <div class="sec-badge"><div class="dot"></div><span data-i18n="sec2">Dexscreener متاح</span></div>
+      <div class="sec-badge"><div class="dot"></div><span data-i18n="sec3">PancakeSwap جاهز</span></div>
+      <div class="sec-badge"><div class="dot"></div><span data-i18n="sec4">Whitepaper جاهز</span></div>
+      <div class="sec-badge"><div class="dot"></div><span data-i18n="sec5">BNB Chain — موثوق</span></div>
+    </div>
+    <div class="cards-grid c3 mt-8">
+      <div class="card card-gold"><span class="card-icon">🔒</span><div class="card-title" data-i18n="sec_c1t">قفل السيولة</div><div class="card-text" data-i18n="sec_c1d">السيولة مقفلة لضمان حماية المستثمرين ومنع عمليات السحب المفاجئ.</div></div>
+      <div class="card card-gold"><span class="card-icon">📋</span><div class="card-title" data-i18n="sec_c2t">عقد شفاف</div><div class="card-text" data-i18n="sec_c2d">العقد منشور بشكل كامل على BscScan ويمكن التحقق منه بسهولة.</div></div>
+      <div class="card card-gold"><span class="card-icon">✅</span><div class="card-title" data-i18n="sec_c3t">جاهزية التدقيق</div><div class="card-text" data-i18n="sec_c3d">الهيكل والوثائق مصممة للإدراج والتدقيق المستقبلي.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- VISION -->
+<section id="vision">
+  <div class="section-inner">
+    <div class="section-tag" data-i18n="vision_tag">الرؤية والرسالة</div>
+    <h2 class="section-title" data-i18n="vision_title">Vision & Mission</h2>
+    <p class="section-desc" data-i18n="vision_desc">بناء منظومة قهوة وشاي عالمية تربط بين الاقتصاد الحقيقي، الهوية التجارية، والمكافآت الرقمية عبر MAYA.</p>
+    <div class="cards-grid c3">
+      <div class="card"><span class="card-icon">☕</span><div class="card-title" data-i18n="vis1t">اقتصاد القهوة الحقيقي</div><div class="card-text" data-i18n="vis1d">استيراد وتحميص وتوزيع القهوة الفاخرة مع ربطها بمكافآت البلوكشين.</div></div>
+      <div class="card"><span class="card-icon">🌐</span><div class="card-title" data-i18n="vis2t">استخدام Web3</div><div class="card-text" data-i18n="vis2d">استخدام توكن MAYA للمكافآت والعضوية والمزايا الرقمية داخل المنظومة.</div></div>
+      <div class="card"><span class="card-icon">🚀</span><div class="card-title" data-i18n="vis3t">التوسع العالمي</div><div class="card-text" data-i18n="vis3d">توسيع MOCHAYA كعلامة قهوة عالمية مدعومة ببنية تحتية رقمية.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- UTILITY -->
+<section id="utility">
+  <div class="section-inner">
+    <div class="section-tag">Token Utility</div>
+    <h2 class="section-title" data-i18n="util_title">استخدامات التوكن</h2>
+    <p class="section-desc" data-i18n="util_desc">استخدامات واضحة للتوكن تجعل المشروع أقرب إلى نموذج أعمال قابل للفهم.</p>
+    <div class="cards-grid c4">
+      <div class="card"><div class="card-title">🎁 <span data-i18n="util1t">مكافآت الولاء</span></div><div class="card-text" data-i18n="util1d">مكافآت ولاء لعملاء القهوة والشاي عبر توكن MAYA.</div></div>
+      <div class="card"><div class="card-title">🏷️ <span data-i18n="util2t">خصومات حصرية</span></div><div class="card-text" data-i18n="util2d">خصومات خاصة على منتجات MOCHAYA لحاملي التوكن.</div></div>
+      <div class="card"><div class="card-title">👥 <span data-i18n="util3t">وصول مجتمعي</span></div><div class="card-text" data-i18n="util3d">وصول مجتمعي ومزايا خاصة لأعضاء الشبكة.</div></div>
+      <div class="card"><div class="card-title">📈 <span data-i18n="util4t">Staking مستقبلي</span></div><div class="card-text" data-i18n="util4d">وظائف مستقبلية مثل staking ومكافآت المنظومة اللامركزية.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="section-inner">
+    <div class="section-tag">Roadmap</div>
+    <h2 class="section-title" data-i18n="rm_title">خارطة طريق للنمو طويل المدى</h2>
+    <div class="roadmap-grid">
+      <div class="rm-card" data-phase="01"><div class="rm-phase">01</div><div class="rm-title" data-i18n="rm1t">بناء الأساس</div><ul class="rm-items"><li data-i18n="rm1i1">نشر العقد الذكي</li><li data-i18n="rm1i2">إطلاق الموقع الرسمي</li><li data-i18n="rm1i3">بناء المجتمع الأساسي</li><li data-i18n="rm1i4">الإدراج على PancakeSwap</li></ul></div>
+      <div class="rm-card" data-phase="02"><div class="rm-phase">02</div><div class="rm-title" data-i18n="rm2t">الجاهزية التجارية</div><ul class="rm-items"><li data-i18n="rm2i1">تدقيق العقد الذكي</li><li data-i18n="rm2i2">الإدراج على CoinMarketCap</li><li data-i18n="rm2i3">إطلاق نظام المكافآت</li><li data-i18n="rm2i4">شراكات التوزيع الأولى</li></ul></div>
+      <div class="rm-card" data-phase="03"><div class="rm-phase">03</div><div class="rm-title" data-i18n="rm3t">الإطلاق التجاري</div><ul class="rm-items"><li data-i18n="rm3i1">إطلاق منتجات القهوة والشاي</li><li data-i18n="rm3i2">الإدراج على بورصة مركزية</li><li data-i18n="rm3i3">شراكات المقاهي الدولية</li><li data-i18n="rm3i4">برنامج ولاء المستهلكين</li></ul></div>
+      <div class="rm-card" data-phase="04"><div class="rm-phase">04</div><div class="rm-title" data-i18n="rm4t">التوسع العالمي</div><ul class="rm-items"><li data-i18n="rm4i1">التوسع في أسواق جديدة</li><li data-i18n="rm4i2">نظام Staking متكامل</li><li data-i18n="rm4i3">شراكات عالمية استراتيجية</li><li data-i18n="rm4i4">منظومة Web3 متكاملة</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-inner">
+    <div class="section-tag" data-i18n="team_tag">الفريق</div>
+    <h2 class="section-title" data-i18n="team_title">فريق المشروع</h2>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-avatar">MK</div><div class="team-name">MK</div><div class="team-role" data-i18n="team1r">المؤسس والرؤية الاستراتيجية</div></div>
+      <div class="team-card"><div class="team-avatar">OL</div><div class="team-name">Operations Lead</div><div class="team-role" data-i18n="team2r">إدارة الاستيراد والتوزيع</div></div>
+      <div class="team-card"><div class="team-avatar">W3</div><div class="team-name">Web3 Lead</div><div class="team-role" data-i18n="team3r">البلوكتشين والنظام الرقمي</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="section-inner">
+    <div class="section-tag" data-i18n="partners_tag">الشركاء</div>
+    <h2 class="section-title" data-i18n="partners_title">الشركاء المستهدفون</h2>
+    <div class="cards-grid c3">
+      <div class="card card-gold"><span class="card-icon">🌿</span><div class="card-title" data-i18n="p1t">مزارع ومورّدو البن</div><div class="card-text" data-i18n="p1d">شراكات مباشرة لبناء سلسلة إمداد موثوقة وعالية الجودة.</div></div>
+      <div class="card card-gold"><span class="card-icon">☕</span><div class="card-title" data-i18n="p2t">المقاهي والمتاجر</div><div class="card-text" data-i18n="p2d">نقاط التوزيع الرئيسية وبرامج الولاء المدعومة بالتوكن.</div></div>
+      <div class="card card-gold"><span class="card-icon">⛓️</span><div class="card-title" data-i18n="p3t">شركاء Web3</div><div class="card-text" data-i18n="p3d">تكاملات مستقبلية مع منصات التتبع، المحافظ، والأنظمة اللامركزية.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="section-tag">FAQ</div>
+    <h2 class="section-title" data-i18n="faq_title">الأسئلة الشائعة</h2>
+    <div class="faq-list">
+      <details class="faq-item"><summary class="faq-q" data-i18n="faq1q">ما هو MOCHAYA Token؟</summary><div class="faq-a" data-i18n="faq1a">توكن رقمي مرتبط بنظام تجارة القهوة والشاي والمكافآت داخل منظومة MOCHAYA على شبكة BNB Chain.</div></details>
+      <details class="faq-item"><summary class="faq-q" data-i18n="faq2q">كيف يمكنني شراء MAYA؟</summary><div class="faq-a" data-i18n="faq2a">يمكن الشراء عبر PancakeSwap عند توفر السيولة وزوج التداول الفعلي.</div></details>
+      <details class="faq-item"><summary class="faq-q" data-i18n="faq3q">ما علاقة المشروع بالقهوة والشاي؟</summary><div class="faq-a" data-i18n="faq3a">المشروع مصمم لربط الاستيراد والتوزيع والمنتجات الفعلية بنظام مكافآت ورمز رقمي.</div></details>
+      <details class="faq-item"><summary class="faq-q" data-i18n="faq4q">هل العقد مدقق؟</summary><div class="faq-a" data-i18n="faq4a">العقد منشور بشكل كامل على BscScan. التدقيق الأمني الكامل مستهدف في المرحلة الثانية.</div></details>
+      <details class="faq-item"><summary class="faq-q" data-i18n="faq5q">ما هو إجمالي المعروض من MAYA؟</summary><div class="faq-a" data-i18n="faq5a">الإجمالي الكلي هو 25,000,000 MAYA موزعة بالتساوي 20% لكل من: السيولة، التطوير، التسويق، المجتمع، والاحتياطي.</div></details>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CLOSING QUOTE -->
+<section id="closing-quote" style="padding:60px 0 40px">
+  <div class="section-inner" style="text-align:center;max-width:780px">
+    <div style="
+      background:linear-gradient(135deg,#1a1208 0%,#0e0a07 60%,#1a1208 100%);
+      border:1px solid #b9782e;
+      border-radius:18px;
+      padding:48px 40px 44px;
+      position:relative;
+      overflow:hidden;
+    ">
+      <!-- Gold glow top -->
+      <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:220px;height:80px;background:radial-gradient(ellipse,rgba(212,164,65,0.18) 0%,transparent 70%);pointer-events:none"></div>
+      <!-- Quote mark -->
+      <div style="font-size:72px;line-height:1;color:#d9a441;opacity:0.25;font-family:Georgia,serif;position:absolute;top:12px;left:28px">"</div>
+      <div style="font-size:72px;line-height:1;color:#d9a441;opacity:0.25;font-family:Georgia,serif;position:absolute;bottom:12px;right:28px">"</div>
+      <!-- AR headline -->
+      <p data-i18n="closing_headline_ar" style="
+        font-family:'Cairo',sans-serif;
+        font-size:clamp(18px,3vw,24px);
+        font-weight:700;
+        color:#f4cf7f;
+        margin:0 0 8px;
+        direction:rtl;
+        line-height:1.6;
+      ">الذهب يُحفظ في الخزائن — وMAYA تُحفظ في المحافظ.</p>
+      <!-- EN headline -->
+      <p data-i18n="closing_headline_en" style="
+        font-family:'Inter',sans-serif;
+        font-size:clamp(14px,2vw,18px);
+        font-weight:600;
+        color:#d9a441;
+        margin:0 0 28px;
+        letter-spacing:0.3px;
+      ">Gold is kept in vaults — MAYA is kept in wallets.</p>
+      <!-- Divider -->
+      <div style="width:60px;height:1px;background:linear-gradient(90deg,transparent,#d9a441,transparent);margin:0 auto 28px"></div>
+      <!-- AR body -->
+      <p data-i18n="closing_body_ar" style="
+        font-family:'Cairo',sans-serif;
+        font-size:clamp(13px,1.8vw,15px);
+        color:#d4c8b8;
+        line-height:1.9;
+        direction:rtl;
+        margin:0 0 12px;
+      ">كل كوب قهوة تُشرب اليوم هو بذرة ثروة تزرعها لغد أفضل.<br>
+      احتفظ بـ MAYA — فإن المستقبل يُكافئ من يؤمن به قبل أن يراه الجميع.</p>
+      <!-- EN body -->
+      <p data-i18n="closing_body_en" style="
+        font-family:'Inter',sans-serif;
+        font-size:clamp(12px,1.6vw,14px);
+        color:#8a7a6a;
+        line-height:1.8;
+        margin:0;
+      ">Every cup of coffee enjoyed today is a seed of wealth planted for a better tomorrow.<br>
+      Hold MAYA — for the future rewards those who believe before the world sees it.</p>
+      <!-- Gold bottom line -->
+      <div style="width:100px;height:2px;background:linear-gradient(90deg,transparent,#f4cf7f,transparent);margin:28px auto 0;border-radius:2px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHITEPAPER -->
+<section>
+  <div class="section-inner" style="text-align:center">
+    <div class="section-tag" style="display:block;text-align:center">Whitepaper</div>
+    <h2 class="section-title" data-i18n="wp_title" style="text-align:center">تحميل الورقة البيضاء</h2>
+    <p class="section-desc" style="margin:0 auto 32px;text-align:center" data-i18n="wp_desc">حمّل النسخة الرسمية من الورقة البيضاء لفهم الرؤية، التوكنوميكس، وخطة التوسع التجاري والرقمي.</p>
+    <a href="https://a0508112633-byte.github.io/mochaya-token/MOCHAYA_Whitepaper.pdf" class="btn btn-gold" style="font-size:16px;padding:14px 36px" data-i18n="wp_btn">📄 تحميل Whitepaper</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#hero" class="logo"><div class="logo-icon">M</div><div class="logo-text"><strong>MOCHAYA</strong><small>Coffee • Tea • Blockchain</small></div></a>
+        <div class="brand-desc" data-i18n="footer_desc">MOCHAYA يبني علامة تجارية فاخرة في القهوة والشاي مع طبقة رقمية استثمارية مدعومة بتوكن MAYA على BNB Chain.</div>
+      </div>
+      <div class="footer-links">
+        <h4 data-i18n="footer_quick">روابط سريعة</h4>
+        <ul>
+          <li><a href="#story" data-i18n="nav_story">القصة</a></li>
+          <li><a href="#market" data-i18n="nav_market">السوق</a></li>
+          <li><a href="#tokenomics" data-i18n="nav_tokenomics">التوكنوميكس</a></li>
+          <li><a href="#roadmap" data-i18n="nav_roadmap">خارطة الطريق</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4 data-i18n="footer_platforms">المنصات</h4>
+        <ul>
+          <li><a href="https://pancakeswap.finance/swap?outputCurrency=0xac3c64593E02beB728a3891cC5EDf05264484444" target="_blank">PancakeSwap</a></li>
+          <li><a href="https://dexscreener.com/bsc/0xac3c64593E02beB728a3891cC5EDf05264484444" target="_blank">Dexscreener</a></li>
+          <li><a href="https://bscscan.com/token/0xac3c64593E02beB728a3891cC5EDf05264484444" target="_blank">BscScan</a></li>
+          <li><a href="https://t.me/Mochayatoken/343887" target="_blank">Telegram</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4 data-i18n="footer_token">التوكن</h4>
+        <ul>
+          <li><a href="#" onclick="openModal();return false" data-i18n="buy_maya">شراء MAYA</a></li>
+          <li><a href="#" onclick="copyContract();return false" data-i18n="copy_contract">نسخ العقد</a></li>
+          <li><a href="#" onclick="addToMetaMask();return false" data-i18n="add_metamask">إضافة لـ MetaMask</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MOCHAYA — Premium Coffee, Tea & Blockchain Ecosystem</span>
+      <div class="flex-wrap-gap">
+        <a href="https://dexscreener.com/bsc/0xac3c64593E02beB728a3891cC5EDf05264484444" target="_blank" class="platform-link" style="padding:8px 14px;font-size:12px">Dexscreener</a>
+        <a href="https://bscscan.com/token/0xac3c64593E02beB728a3891cC5EDf05264484444" target="_blank" class="platform-link" style="padding:8px 14px;font-size:12px">BscScan</a>
+        <a href="https://t.me/Mochayatoken/343887" target="_blank" class="platform-link" style="padding:8px 14px;font-size:12px">Telegram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div><div class="modal-sub">PancakeSwap</div><div class="modal-title" data-i18n="modal_title">شراء MOCHAYA Token</div></div>
+      <button class="modal-close" onclick="closeModal()" data-i18n="close">إغلاق</button>
+    </div>
+    <p style="font-size:14px;color:var(--muted);line-height:1.9;margin-bottom:20px" data-i18n="modal_desc">وصول سريع للمستثمرين إلى الشراء، نسخ العقد، وإضافة التوكن للمحفظة في واجهة واحدة واضحة.</p>
+    <div class="contract-box" style="margin-bottom:20px">
+      <div><div class="contract-label" data-i18n="contract_label">عنوان العقد</div><div class="copy-addr">0xac3c64593E02beB728a3891cC5EDf05264484444</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+      <button class="btn btn-ghost" onclick="copyContract()" data-i18n="copy_contract">📋 نسخ العقد</button>
+      <button class="btn btn-ghost" onclick="addToMetaMask()" data-i18n="add_metamask">🦊 إضافة لـ MetaMask</button>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="https://pancakeswap.finance/swap?outputCurrency=0xac3c64593E02beB728a3891cC5EDf05264484444" target="_blank" class="btn btn-gold" data-i18n="open_pancake">🥞 فتح PancakeSwap</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+//  TRANSLATIONS
+// ══════════════════════════════════════════
+const T = {
+ar:{
+  nav_story:'القصة',nav_market:'السوق',nav_tokenomics:'التوكنوميكس',
+  nav_security:'الأمان',nav_roadmap:'خارطة الطريق',nav_team:'الفريق',
+  connect_wallet:'اتصل بالمحفظة',join_community:'انضم للمجتمع',buy_maya:'شراء MAYA',
+  hero_title1:'منصة قهوة وشاي',hero_title2:'بهوية Web3 استثمارية',
+  hero_desc:'MOCHAYA يبني علامة تجارية فاخرة في القهوة والشاي مع طبقة رقمية استثمارية مدعومة بتوكن MAYA على BNB Chain.',
+  hero_sub:'جاهزية للمنصات، وضوح للمستثمر، وهوية تجارية قابلة للتوسع عالميًا.',
+  explore:'استكشف المشروع',view_tokenomics:'عرض التوكنوميكس',smart_buy:'شراء ذكي',
+  live_price:'السعر المباشر',holders:'عدد الحاملين',
+  stat_name:'اسم التوكن',stat_ticker:'الرمز',stat_network:'الشبكة',
+  stat_supply:'المعروض الكلي',stat_wallet:'المحفظة',stat_balance:'رصيد MAYA',
+  not_connected:'غير متصل',
+  story_tag:'القصة',story_title:'علامة قهوة عالمية',
+  story_desc:'MOCHAYA يجمع بين علامة تجارية فاخرة للقهوة والشاي وبين بنية رقمية تضيف بعدًا استثماريًا، مجتمعيًا، وتجاريًا طويل المدى.',
+  biz1_t:'الاستيراد',biz1_d:'استيراد القهوة والشاي من المزارع والأسواق العالمية.',
+  biz2_t:'التحميص والتعبئة',biz2_d:'التحميص والتعبئة والتغليف تحت علامة MOCHAYA الفاخرة.',
+  biz3_t:'التوزيع',biz3_d:'التوزيع على المقاهي والمتاجر والشركاء التجاريين.',
+  biz4_t:'مكافآت MAYA',biz4_d:'ربط التجارة الفعلية بمكافآت MOCHAYA Token على البلوكتشين.',
+  market_tag:'السوق المباشر',market_title:'بيانات السوق المباشرة',market_live:'مباشر من Dexscreener',
+  liquidity:'السيولة',vol24:'حجم 24 ساعة',mcap:'القيمة السوقية',
+  contract_label:'عنوان العقد',copy_contract:'نسخ العقد',copy_done:'✓ تم النسخ',
+  feed_tag:'آخر عمليات الشراء',feed_loading:'جاري تحميل بيانات التداول...',feed_empty:'لا توجد معاملات بعد — تابع على BscScan',tag_buy:'شراء',tag_add:'إضافة سيولة',
+  toko_tag:'التوكنوميكس',toko_title:'اقتصاد MOCHAYA Token',
+  toko_desc:'توزيع عادل ومتوازن يضمن استدامة المشروع على المدى البعيد.',
+  toko_liq:'السيولة',toko_dev:'التطوير',toko_mkt:'التسويق',toko_com:'المجتمع',toko_res:'الاحتياطي',
+  sec_tag:'الأمان والشفافية',sec_title:'الأمان والسيولة',
+  sec_desc:'ملخص بصري سريع للعناصر التي تهم المستثمر: العقد، الشفافية، المصادر، والجاهزية التشغيلية.',
+  sec1:'عقد منشور على BscScan',sec2:'Dexscreener متاح',sec3:'PancakeSwap جاهز',sec4:'Whitepaper جاهز',sec5:'BNB Chain — موثوق',
+  sec_c1t:'قفل السيولة',sec_c1d:'السيولة مقفلة لضمان حماية المستثمرين ومنع عمليات السحب المفاجئ.',
+  sec_c2t:'عقد شفاف',sec_c2d:'العقد منشور بشكل كامل على BscScan ويمكن التحقق منه بسهولة.',
+  sec_c3t:'جاهزية التدقيق',sec_c3d:'الهيكل والوثائق مصممة للإدراج والتدقيق المستقبلي.',
+  vision_tag:'الرؤية والرسالة',vision_title:'Vision & Mission',
+  vision_desc:'بناء منظومة قهوة وشاي عالمية تربط بين الاقتصاد الحقيقي، الهوية التجارية، والمكافآت الرقمية عبر MAYA.',
+  vis1t:'اقتصاد القهوة الحقيقي',vis1d:'استيراد وتحميص وتوزيع القهوة الفاخرة مع ربطها بمكافآت البلوكشين.',
+  vis2t:'استخدام Web3',vis2d:'استخدام توكن MAYA للمكافآت والعضوية والمزايا الرقمية داخل المنظومة.',
+  vis3t:'التوسع العالمي',vis3d:'توسيع MOCHAYA كعلامة قهوة عالمية مدعومة ببنية تحتية رقمية.',
+  util_title:'استخدامات التوكن',util_desc:'استخدامات واضحة للتوكن تجعل المشروع أقرب إلى نموذج أعمال قابل للفهم.',
+  util1t:'مكافآت الولاء',util1d:'مكافآت ولاء لعملاء القهوة والشاي عبر توكن MAYA.',
+  util2t:'خصومات حصرية',util2d:'خصومات خاصة على منتجات MOCHAYA لحاملي التوكن.',
+  util3t:'وصول مجتمعي',util3d:'وصول مجتمعي ومزايا خاصة لأعضاء الشبكة.',
+  util4t:'Staking مستقبلي',util4d:'وظائف مستقبلية مثل staking ومكافآت المنظومة اللامركزية.',
+  rm_title:'خارطة طريق للنمو طويل المدى',
+  rm1t:'بناء الأساس',rm1i1:'نشر العقد الذكي',rm1i2:'إطلاق الموقع الرسمي',rm1i3:'بناء المجتمع الأساسي',rm1i4:'الإدراج على PancakeSwap',
+  rm2t:'الجاهزية التجارية',rm2i1:'تدقيق العقد الذكي',rm2i2:'الإدراج على CoinMarketCap',rm2i3:'إطلاق نظام المكافآت',rm2i4:'شراكات التوزيع الأولى',
+  rm3t:'الإطلاق التجاري',rm3i1:'إطلاق منتجات القهوة والشاي',rm3i2:'الإدراج على بورصة مركزية',rm3i3:'شراكات المقاهي الدولية',rm3i4:'برنامج ولاء المستهلكين',
+  rm4t:'التوسع العالمي',rm4i1:'التوسع في أسواق جديدة',rm4i2:'نظام Staking متكامل',rm4i3:'شراكات عالمية استراتيجية',rm4i4:'منظومة Web3 متكاملة',
+  team_tag:'الفريق',team_title:'فريق المشروع',
+  team1r:'المؤسس والرؤية الاستراتيجية',team2r:'إدارة الاستيراد والتوزيع',team3r:'البلوكتشين والنظام الرقمي',
+  partners_tag:'الشركاء',partners_title:'الشركاء المستهدفون',
+  p1t:'مزارع ومورّدو البن',p1d:'شراكات مباشرة لبناء سلسلة إمداد موثوقة وعالية الجودة.',
+  p2t:'المقاهي والمتاجر',p2d:'نقاط التوزيع الرئيسية وبرامج الولاء المدعومة بالتوكن.',
+  p3t:'شركاء Web3',p3d:'تكاملات مستقبلية مع منصات التتبع، المحافظ، والأنظمة اللامركزية.',
+  faq_title:'الأسئلة الشائعة',
+  faq1q:'ما هو MOCHAYA Token؟',faq1a:'توكن رقمي مرتبط بنظام تجارة القهوة والشاي والمكافآت داخل منظومة MOCHAYA على شبكة BNB Chain.',
+  faq2q:'كيف يمكنني شراء MAYA؟',faq2a:'يمكن الشراء عبر PancakeSwap عند توفر السيولة وزوج التداول الفعلي.',
+  faq3q:'ما علاقة المشروع بالقهوة والشاي؟',faq3a:'المشروع مصمم لربط الاستيراد والتوزيع والمنتجات الفعلية بنظام مكافآت ورمز رقمي.',
+  faq4q:'هل العقد مدقق؟',faq4a:'العقد منشور بشكل كامل على BscScan. التدقيق الأمني الكامل مستهدف في المرحلة الثانية.',
+  faq5q:'ما هو إجمالي المعروض من MAYA؟',faq5a:'الإجمالي الكلي هو 25,000,000 MAYA موزعة بالتساوي 20% لكل من: السيولة، التطوير، التسويق، المجتمع، والاحتياطي.',
+  wp_title:'تحميل الورقة البيضاء',wp_desc:'حمّل النسخة الرسمية من الورقة البيضاء لفهم الرؤية، التوكنوميكس، وخطة التوسع التجاري والرقمي.',wp_btn:'📄 تحميل Whitepaper',
+  closing_headline_ar:'الذهب يُحفظ في الخزائن — وMAYA تُحفظ في المحافظ.',
+  closing_headline_en:'Gold is kept in vaults — MAYA is kept in wallets.',
+  closing_body_ar:'كل كوب قهوة تُشرب اليوم هو بذرة ثروة تزرعها لغد أفضل.<br>احتفظ بـ MAYA — فإن المستقبل يُكافئ من يؤمن به قبل أن يراه الجميع.',
+  closing_body_en:'Every cup of coffee enjoyed today is a seed of wealth planted for a better tomorrow.<br>Hold MAYA — for the future rewards those who believe before the world sees it.',
+  footer_desc:'MOCHAYA يبني علامة تجارية فاخرة في القهوة والشاي مع طبقة رقمية استثمارية مدعومة بتوكن MAYA على BNB Chain.',
+  footer_quick:'روابط سريعة',footer_platforms:'المنصات',footer_token:'التوكن',
+  modal_title:'شراء MOCHAYA Token',modal_desc:'وصول سريع للمستثمرين إلى الشراء، نسخ العقد، وإضافة التوكن للمحفظة في واجهة واحدة واضحة.',
+  close:'إغلاق',add_metamask:'إضافة لـ MetaMask',open_pancake:'🥞 فتح PancakeSwap',
+  ticker_price:'السعر',ticker_mcap:'القيمة السوقية',ticker_vol:'حجم 24س',
+},
+en:{
+  nav_story:'Story',nav_market:'Market',nav_tokenomics:'Tokenomics',
+  nav_security:'Security',nav_roadmap:'Roadmap',nav_team:'Team',
+  connect_wallet:'Connect Wallet',join_community:'Join Community',buy_maya:'Buy MAYA',
+  hero_title1:'Coffee & Tea Platform',hero_title2:'Built for Investors',
+  hero_desc:'MOCHAYA builds a premium coffee and tea brand with an investor-facing digital layer powered by MAYA on BNB Chain.',
+  hero_sub:'Exchange-ready presentation, clear token framing, and a global consumer brand narrative.',
+  explore:'Explore Project',view_tokenomics:'View Tokenomics',smart_buy:'Smart Buy',
+  live_price:'Live Price',holders:'Holders',
+  stat_name:'Token Name',stat_ticker:'Ticker',stat_network:'Network',
+  stat_supply:'Total Supply',stat_wallet:'Wallet',stat_balance:'MAYA Balance',
+  not_connected:'Not Connected',
+  story_tag:'Story',story_title:'A Global Coffee Brand',
+  story_desc:'MOCHAYA combines a premium coffee and tea brand with a digital ecosystem designed for long-term commercial and investor relevance.',
+  biz1_t:'Import',biz1_d:'Import coffee and tea from global farms and specialty markets.',
+  biz2_t:'Roast & Package',biz2_d:'Roast, package, and brand products under MOCHAYA.',
+  biz3_t:'Distribution',biz3_d:'Distribute to cafés, shops, and commercial partners.',
+  biz4_t:'MAYA Rewards',biz4_d:'Connect real trade with MOCHAYA Token rewards on blockchain.',
+  market_tag:'Live Market',market_title:'Live Market Data',market_live:'Live from Dexscreener',
+  liquidity:'Liquidity',vol24:'24H Volume',mcap:'Market Cap',
+  contract_label:'Contract Address',copy_contract:'Copy Contract',copy_done:'✓ Copied',
+  feed_tag:'Recent Buys',feed_loading:'Loading transaction data...',feed_empty:'No transactions yet — follow on BscScan',tag_buy:'BUY',tag_add:'ADD LIQ',
+  toko_tag:'Tokenomics',toko_title:'MOCHAYA Token Economics',
+  toko_desc:'A fair and balanced distribution that ensures long-term project sustainability.',
+  toko_liq:'Liquidity',toko_dev:'Development',toko_mkt:'Marketing',toko_com:'Community',toko_res:'Reserve',
+  sec_tag:'Security & Transparency',sec_title:'Security & Liquidity',
+  sec_desc:'A fast visual summary of what investors care about most: contract visibility, transparency, and operational readiness.',
+  sec1:'Published Contract on BscScan',sec2:'Dexscreener Available',sec3:'PancakeSwap Ready',sec4:'Whitepaper Ready',sec5:'BNB Chain — Trusted',
+  sec_c1t:'Liquidity Lock',sec_c1d:'Liquidity is locked to protect investors and prevent rug pulls.',
+  sec_c2t:'Transparent Contract',sec_c2d:'Contract is fully published on BscScan and easily verifiable.',
+  sec_c3t:'Audit Readiness',sec_c3d:'Structure and documentation designed for future listing and audit requirements.',
+  vision_tag:'Vision & Mission',vision_title:'Vision & Mission',
+  vision_desc:'Build a global coffee and tea ecosystem connecting real trade, premium branding, and digital rewards through MAYA.',
+  vis1t:'Real Coffee Economy',vis1d:'Import, roast, and distribute premium coffee connected to blockchain rewards.',
+  vis2t:'Web3 Utility',vis2d:'Use the MAYA token for loyalty rewards, community access, and digital utility.',
+  vis3t:'Global Expansion',vis3d:'Scale MOCHAYA into a global coffee brand integrated with blockchain infrastructure.',
+  util_title:'Token Utility',util_desc:'Clear token use cases that make the project easier to understand for investors and listing partners.',
+  util1t:'Loyalty Rewards',util1d:'Loyalty rewards for coffee and tea buyers via MAYA token.',
+  util2t:'Exclusive Discounts',util2d:'Special discounts on MOCHAYA products for token holders.',
+  util3t:'Community Access',util3d:'Community access and special benefits for network members.',
+  util4t:'Future Staking',util4d:'Future staking and decentralized ecosystem rewards.',
+  rm_title:'Long-Term Growth Roadmap',
+  rm1t:'Foundation',rm1i1:'Deploy smart contract',rm1i2:'Launch official website',rm1i3:'Build core community',rm1i4:'List on PancakeSwap',
+  rm2t:'Commercial Readiness',rm2i1:'Smart contract audit',rm2i2:'CoinMarketCap listing',rm2i3:'Launch rewards system',rm2i4:'First distribution partnerships',
+  rm3t:'Commercial Launch',rm3i1:'Launch coffee & tea products',rm3i2:'CEX exchange listing',rm3i3:'International café partnerships',rm3i4:'Consumer loyalty program',
+  rm4t:'Global Expansion',rm4i1:'Expand into new markets',rm4i2:'Full staking system',rm4i3:'Strategic global partnerships',rm4i4:'Full Web3 ecosystem',
+  team_tag:'Team',team_title:'Project Team',
+  team1r:'Founder & Strategic Vision',team2r:'Import & Distribution Operations',team3r:'Blockchain & Digital Ecosystem',
+  partners_tag:'Partners',partners_title:'Target Partners',
+  p1t:'Coffee Farms & Exporters',p1d:'Direct sourcing partnerships for a trusted premium supply chain.',
+  p2t:'Cafés & Retail Shops',p2d:'Core distribution points with token-powered loyalty flows.',
+  p3t:'Web3 Partners',p3d:'Future integrations with trackers, wallets, and decentralized tools.',
+  faq_title:'Frequently Asked Questions',
+  faq1q:'What is MOCHAYA Token?',faq1a:"A digital token connected to MOCHAYA's coffee, tea, and rewards ecosystem on BNB Chain.",
+  faq2q:'How can I buy MAYA?',faq2a:'Purchase via PancakeSwap once liquidity and the live trading pair are available.',
+  faq3q:'How is the project linked to coffee and tea?',faq3a:'The project connects real import, distribution, and products with a rewards token model.',
+  faq4q:'Is the contract audited?',faq4a:'The contract is fully published on BscScan. A full security audit is targeted in Phase 2.',
+  faq5q:'What is the total MAYA supply?',faq5a:'Total supply is 25,000,000 MAYA split equally 20% each: Liquidity, Development, Marketing, Community, and Reserve.',
+  wp_title:'Whitepaper Download',wp_desc:'Download the official whitepaper to understand the vision, tokenomics, and trade expansion plan.',wp_btn:'📄 Download Whitepaper',
+  closing_headline_ar:'الذهب يُحفظ في الخزائن — وMAYA تُحفظ في المحافظ.',
+  closing_headline_en:'Gold is kept in vaults — MAYA is kept in wallets.',
+  closing_body_ar:'كل كوب قهوة تُشرب اليوم هو بذرة ثروة تزرعها لغد أفضل.<br>احتفظ بـ MAYA — فإن المستقبل يُكافئ من يؤمن به قبل أن يراه الجميع.',
+  closing_body_en:'Every cup of coffee enjoyed today is a seed of wealth planted for a better tomorrow.<br>Hold MAYA — for the future rewards those who believe before the world sees it.',
+  footer_desc:'MOCHAYA builds a premium coffee and tea brand with an investor-facing digital layer powered by MAYA on BNB Chain.',
+  footer_quick:'Quick Links',footer_platforms:'Platforms',footer_token:'Token',
+  modal_title:'Buy MOCHAYA Token',modal_desc:'Fast investor access to buy, copy contract, and add the token to wallet from a single clear interface.',
+  close:'Close',add_metamask:'Add to MetaMask',open_pancake:'🥞 Open PancakeSwap',
+  ticker_price:'Price',ticker_mcap:'Market Cap',ticker_vol:'24H Vol',
+},
+zh:{
+  nav_story:'品牌故事',nav_market:'市场',nav_tokenomics:'代币经济',
+  nav_security:'安全',nav_roadmap:'路线图',nav_team:'团队',
+  connect_wallet:'连接钱包',join_community:'加入社区',buy_maya:'购买 MAYA',
+  hero_title1:'咖啡与茶平台',hero_title2:'面向投资者打造',
+  hero_desc:'MOCHAYA 正在打造高端咖啡与茶品牌，并结合基于 BNB Chain 上 MAYA 的投资型数字生态层。',
+  hero_sub:'面向交易所展示、投资者叙事清晰，并具备全球扩张潜力。',
+  explore:'探索项目',view_tokenomics:'查看代币经济',smart_buy:'智能购买',
+  live_price:'实时价格',holders:'持有人',
+  stat_name:'代币名称',stat_ticker:'代码',stat_network:'网络',
+  stat_supply:'总供应量',stat_wallet:'钱包',stat_balance:'MAYA 余额',
+  not_connected:'未连接',
+  story_tag:'品牌故事',story_title:'全球咖啡品牌',
+  story_desc:'MOCHAYA 将高端咖啡与茶品牌，与长期商业价值和投资价值兼备的数字生态结合在一起。',
+  biz1_t:'进口',biz1_d:'从全球农场与精品市场进口咖啡和茶叶。',
+  biz2_t:'烘焙与包装',biz2_d:'以 MOCHAYA 品牌进行烘焙、包装与品牌化。',
+  biz3_t:'分销',biz3_d:'向咖啡馆、零售店和商业伙伴分销。',
+  biz4_t:'MAYA 奖励',biz4_d:'将真实贸易与 MOCHAYA Token 区块链奖励机制连接起来。',
+  market_tag:'实时市场',market_title:'实时市场数据',market_live:'来自 Dexscreener 的实时数据',
+  liquidity:'流动性',vol24:'24小时成交量',mcap:'市值',
+  contract_label:'合约地址',copy_contract:'复制合约',copy_done:'✓ 已复制',
+  feed_tag:'最近买入',feed_loading:'正在加载交易数据...',feed_empty:'暂无交易记录 — 在BscScan上查看',tag_buy:'买入',tag_add:'添加流动性',
+  toko_tag:'代币经济',toko_title:'MOCHAYA 代币经济',
+  toko_desc:'公平均衡的分配方案，确保项目的长期可持续发展。',
+  toko_liq:'流动性',toko_dev:'开发',toko_mkt:'营销',toko_com:'社区',toko_res:'储备',
+  sec_tag:'安全与透明',sec_title:'安全与流动性',
+  sec_desc:'快速可视化展示投资者最关心的内容：合约可见性、透明度、数据来源与运营准备度。',
+  sec1:'合约已发布于 BscScan',sec2:'Dexscreener 可用',sec3:'PancakeSwap 就绪',sec4:'白皮书已准备',sec5:'BNB Chain — 可信',
+  sec_c1t:'流动性锁定',sec_c1d:'流动性已锁定，以保护投资者并防止突然撤资。',
+  sec_c2t:'透明合约',sec_c2d:'合约已在 BscScan 完整发布，可轻松验证。',
+  sec_c3t:'审计准备',sec_c3d:'项目结构与文档专为未来上市和审计要求而设计。',
+  vision_tag:'愿景与使命',vision_title:'Vision & Mission',
+  vision_desc:'打造一个连接真实贸易、高端品牌和数字奖励的全球咖啡与茶生态，核心由 MAYA 驱动。',
+  vis1t:'真实咖啡经济',vis1d:'将高端咖啡的进口、烘焙与分销与区块链奖励连接起来。',
+  vis2t:'Web3 用途',vis2d:'使用 MAYA 代币实现忠诚奖励、社区访问和数字权益。',
+  vis3t:'全球扩张',vis3d:'将 MOCHAYA 扩展为与区块链基础设施融合的全球咖啡品牌。',
+  util_title:'代币用途',util_desc:'清晰的代币使用场景，使投资者、用户和未来上市伙伴更容易理解项目。',
+  util1t:'忠诚奖励',util1d:'通过 MAYA 代币为咖啡和茶叶买家提供忠诚奖励。',
+  util2t:'专属折扣',util2d:'代币持有者可享受 MOCHAYA 产品的专属折扣。',
+  util3t:'社区访问',util3d:'为网络成员提供社区访问权限和特殊福利。',
+  util4t:'未来质押',util4d:'未来的质押功能和去中心化生态奖励。',
+  rm_title:'长期增长路线图',
+  rm1t:'基础建设',rm1i1:'部署智能合约',rm1i2:'发布官方网站',rm1i3:'建立核心社区',rm1i4:'在 PancakeSwap 上市',
+  rm2t:'商业准备',rm2i1:'智能合约审计',rm2i2:'CoinMarketCap 上市',rm2i3:'启动奖励系统',rm2i4:'首批分销合作',
+  rm3t:'商业启动',rm3i1:'发布咖啡和茶产品',rm3i2:'中心化交易所上市',rm3i3:'国际咖啡馆合作',rm3i4:'消费者忠诚计划',
+  rm4t:'全球扩张',rm4i1:'拓展新市场',rm4i2:'完整质押系统',rm4i3:'战略全球合作',rm4i4:'完整 Web3 生态系统',
+  team_tag:'团队',team_title:'项目团队',
+  team1r:'创始人与战略愿景',team2r:'进口与分销运营',team3r:'区块链与数字生态',
+  partners_tag:'合作伙伴',partners_title:'目标合作伙伴',
+  p1t:'咖啡农场与出口商',p1d:'直接采购合作，用于建立可信赖的高品质供应链。',
+  p2t:'咖啡馆与零售店',p2d:'核心分销渠道，并结合代币驱动的忠诚奖励体系。',
+  p3t:'Web3 合作伙伴',p3d:'未来将与追踪平台、钱包和去中心化工具进行整合。',
+  faq_title:'常见问题',
+  faq1q:'什么是 MOCHAYA Token？',faq1a:'这是一个连接 MOCHAYA 咖啡、茶与奖励生态的数字代币，运行于 BNB Chain 上。',
+  faq2q:'如何购买 MAYA？',faq2a:'在流动性和真实交易对上线后可通过 PancakeSwap 购买。',
+  faq3q:'该项目与咖啡和茶有什么关系？',faq3a:'该项目旨在将真实的进口、分销和实体产品与奖励型代币模型连接起来。',
+  faq4q:'合约经过审计吗？',faq4a:'合约已在 BscScan 完整发布。完整的安全审计目标在第二阶段完成。',
+  faq5q:'MAYA 的总供应量是多少？',faq5a:'总供应量为 25,000,000 MAYA，平均分为 20%：流动性、开发、营销、社区和储备。',
+  wp_title:'白皮书下载',wp_desc:'下载官方白皮书，了解项目愿景、代币经济以及贸易扩张计划。',wp_btn:'📄 下载白皮书',
+  closing_headline_ar:'الذهب يُحفظ في الخزائن — وMAYA تُحفظ في المحافظ.',
+  closing_headline_en:'黄金存于金库 — MAYA 存于钱包。',
+  closing_body_ar:'كل كوب قهوة تُشرب اليوم هو بذرة ثروة تزرعها لغد أفضل.<br>احتفظ بـ MAYA — فإن المستقبل يُكافئ من يؤمن به قبل أن يراه الجميع.',
+  closing_body_en:'今天享用的每一杯咖啡，都是为美好明天播下的财富种子。<br>持有 MAYA — 未来将奖励那些在世界看见之前就已相信的人。',
+  footer_desc:'MOCHAYA 正在打造高端咖啡与茶品牌，并结合基于 BNB Chain 上 MAYA 的投资型数字生态层。',
+  footer_quick:'快速链接',footer_platforms:'平台',footer_token:'代币',
+  modal_title:'购买 MOCHAYA Token',modal_desc:'为投资者提供快速入口，可在一个清晰界面中购买、复制合约并添加代币到钱包。',
+  close:'关闭',add_metamask:'添加到 MetaMask',open_pancake:'🥞 打开 PancakeSwap',
+  ticker_price:'价格',ticker_mcap:'市值',ticker_vol:'24小时量',
+}};
+
+let currentLang = 'ar';
+let walletConnected = false;
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = T[lang];
+  const isRtl = lang === 'ar';
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+  document.body.className = 'lang-' + lang;
+
+  // Translate all elements with data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.textContent = t[key];
+  });
+
+  // Ticker labels
+  ['tk-price-lbl','tk-price-lbl2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=t.ticker_price});
+  ['tk-mcap-lbl','tk-mcap-lbl2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=t.ticker_mcap});
+  ['tk-vol-lbl','tk-vol-lbl2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=t.ticker_vol});
+
+  // Wallet display if not connected
+  const wd = document.getElementById('wallet-display');
+  if (wd && !walletConnected) wd.textContent = t.not_connected;
+
+  // Update wallet-btn if not connected
+  const wb = document.getElementById('wallet-btn');
+  if (wb && !walletConnected) wb.textContent = t.connect_wallet;
+
+  // Active lang button
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+
+  // Page title
+  const titles = {ar:'MOCHAYA — قهوة وشاي • Web3 • BNB Chain',en:'MOCHAYA — Coffee & Tea • Web3 • BNB Chain',zh:'MOCHAYA — 咖啡与茶 • Web3 • BNB Chain'};
+  document.title = titles[lang];
+}
+
+// ══════════════════════════════════════════
+//  MARKET DATA
+// ══════════════════════════════════════════
+const CONTRACT = '0xac3c64593E02beB728a3891cC5EDf05264484444';
+const ENDPOINTS = [
+  `https://api.dexscreener.com/latest/dex/tokens/${CONTRACT}`,
+  `https://api.allorigins.win/raw?url=${encodeURIComponent('https://api.dexscreener.com/latest/dex/tokens/'+CONTRACT)}`,
+  `https://corsproxy.io/?${encodeURIComponent('https://api.dexscreener.com/latest/dex/tokens/'+CONTRACT)}`
+];
+
+function fmt(v){if(v==null||isNaN(Number(v)))return'--';const n=Number(v);if(n>=1)return'$'+n.toFixed(4);if(n>=0.01)return'$'+n.toFixed(6);return'$'+n.toFixed(8)}
+function fmtL(v){if(v==null||isNaN(Number(v)))return'--';const n=Number(v);if(n>=1e9)return'$'+(n/1e9).toFixed(2)+'B';if(n>=1e6)return'$'+(n/1e6).toFixed(2)+'M';if(n>=1e3)return'$'+(n/1e3).toFixed(2)+'K';return'$'+n.toFixed(2)}
+
+function applyMarket(pair){
+  const price=fmt(pair.priceUsd),liq=fmtL(pair.liquidity?.usd),vol=fmtL(pair.volume?.h24),mcap=fmtL(pair.marketCap||pair.fdv);
+  ['m-price','h-price','t-price','t-price2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=price});
+  ['m-mcap','t-mcap','t-mcap2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=mcap});
+  ['m-vol','t-vol','t-vol2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=vol});
+  const ml=document.getElementById('m-liq');if(ml)ml.textContent=liq;
+}
+
+async function tryFetch(url){
+  const res=await fetch(url,{cache:'no-store'});
+  if(!res.ok)throw new Error('HTTP '+res.status);
+  const data=await res.json();
+  const pair=Array.isArray(data?.pairs)?(data.pairs.find(p=>p.chainId==='bsc')||data.pairs[0]):null;
+  if(!pair)throw new Error('No pair');
+  return pair;
+}
+
+async function fetchMarket(){
+  for(const url of ENDPOINTS){try{const pair=await tryFetch(url);applyMarket(pair);return}catch{}}
+  const soon={ar:'قريباً',en:'Soon',zh:'即将上线'};
+  ['m-price','h-price','t-price','t-price2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=soon[currentLang]||'--'});
+}
+fetchMarket();
+setInterval(fetchMarket,45000);
+
+// ══ REAL TRANSACTIONS FROM BSCSCAN ══
+async function fetchTxFeed(){
+  const feed = document.getElementById('buy-feed-container');
+  if(!feed) return;
+  try {
+    const url = `https://api.bscscan.com/api?module=account&action=tokentx&contractaddress=${CONTRACT}&page=1&offset=10&sort=desc`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if(data.status==='1' && data.result && data.result.length > 0){
+      const txs = data.result.slice(0,5);
+      const lang = currentLang || 'ar';
+      const buyLabel = T[lang]?.tag_buy || 'BUY';
+      feed.innerHTML = '<div class="section-tag" data-i18n="feed_tag">'+( T[lang]?.feed_tag||'آخر المعاملات')+'</div>' +
+        txs.map(tx => {
+          const wallet = tx.from.slice(0,6)+'...'+tx.from.slice(-4);
+          const amount = (Number(tx.value) / 1e18).toFixed(2);
+          const ago = Math.floor((Date.now()/1000 - Number(tx.timeStamp)));
+          const agoStr = ago < 60 ? ago+'s' : Math.floor(ago/60)+'m';
+          const href = 'https://bscscan.com/tx/'+tx.hash;
+          return `<a href="${href}" target="_blank" style="text-decoration:none;color:inherit">
+            <div class="buy-feed-item">
+              <div><div class="wallet">${wallet}</div><div class="ago">${agoStr}</div></div>
+              <div class="amount">${amount} MAYA</div>
+              <span class="buy-tag buy">${buyLabel}</span>
+            </div></a>`;
+        }).join('');
+    } else {
+      // No txs yet — show link to BscScan
+      const lang = currentLang || 'ar';
+      document.getElementById('feed-loading') && (document.getElementById('feed-loading').innerHTML =
+        '<div style="font-size:28px;margin-bottom:10px">📊</div>' +
+        '<div style="font-size:14px;color:var(--muted);margin-bottom:14px">'+(T[lang]?.feed_empty||'لا توجد معاملات بعد')+'</div>' +
+        '<a href="https://bscscan.com/token/'+CONTRACT+'#transactions" target="_blank" style="color:var(--gold);font-size:13px;border:1px solid var(--border);padding:8px 18px;border-radius:99px;text-decoration:none;">🔍 BscScan</a>');
+    }
+  } catch(e) {
+    console.log('TX feed error:', e);
+  }
+}
+fetchTxFeed();
+setInterval(fetchTxFeed, 30000);
+
+// ══════════════════════════════════════════
+//  UI FUNCTIONS
+// ══════════════════════════════════════════
+function openModal(){document.getElementById('modal').classList.add('open')}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+
+async function copyContract(){
+  try{
+    await navigator.clipboard.writeText(CONTRACT);
+    const btn=document.getElementById('copy-btn');
+    if(btn){
+      const orig=btn.textContent;
+      btn.textContent=T[currentLang].copy_done||'✓';
+      setTimeout(()=>btn.textContent=T[currentLang].copy_contract||orig,1800);
+    }
+  }catch{}
+}
+
+async function addToMetaMask(){
+  if(!window.ethereum){alert(currentLang==='ar'?'MetaMask غير مثبت':currentLang==='zh'?'未安装 MetaMask':'MetaMask not installed');return}
+  try{await window.ethereum.request({method:'wallet_watchAsset',params:[{type:'ERC20',options:{address:CONTRACT,symbol:'MAYA',decimals:18}}]})}catch(e){console.log(e)}
+}
+
+async function connectWallet(){
+  if(!window.ethereum){alert(currentLang==='ar'?'MetaMask غير مثبت':currentLang==='zh'?'未安装 MetaMask':'MetaMask not installed');return}
+  try{
+    const accounts=await window.ethereum.request({method:'eth_requestAccounts'});
+    const addr=accounts[0];
+    const short=addr.slice(0,6)+'...'+addr.slice(-4);
+    walletConnected=true;
+    document.getElementById('wallet-btn').textContent=short;
+    document.getElementById('wallet-display').textContent=short;
+  }catch{}
+}
+</script>
+
+<!-- THREE.JS 3D SCENE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const canvas = document.getElementById('bean3d');
+  if(!canvas) return;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x0a0603, 0.055);
+
+  const camera = new THREE.PerspectiveCamera(44, 1, 0.1, 60);
+  camera.position.set(0, 0.3, 6.5);
+  camera.lookAt(0, 0, 0);
+
+  function resize(){
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w/h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // ── LIGHTS ──────────────────────────────
+  scene.add(new THREE.AmbientLight(0x2a1508, 1.0));
+
+  const key = new THREE.DirectionalLight(0xfff4d0, 3.5);
+  key.position.set(3, 6, 4);
+  key.castShadow = true;
+  key.shadow.mapSize.width  = 1024;
+  key.shadow.mapSize.height = 1024;
+  scene.add(key);
+
+  const fill = new THREE.DirectionalLight(0x8adf8e, 0.55);
+  fill.position.set(-5, -2, 3);
+  scene.add(fill);
+
+  const rim = new THREE.DirectionalLight(0xc47a28, 1.2);
+  rim.position.set(0, -5, -3);
+  scene.add(rim);
+
+  const goldPt = new THREE.PointLight(0xf4cf7f, 2.5, 10);
+  goldPt.position.set(-2, 3, 2);
+  scene.add(goldPt);
+
+  const greenPt = new THREE.PointLight(0x4adf8e, 0.8, 8);
+  greenPt.position.set(3, -2, 2);
+  scene.add(greenPt);
+
+  // ── GIANT COFFEE BEAN ─────────────────
+  const beanGroup = new THREE.Group();
+  scene.add(beanGroup);
+
+  // Base sphere → distort into bean shape
+  const beanGeo = new THREE.SphereGeometry(1.45, 96, 96);
+  const bPos = beanGeo.attributes.position;
+  for(let i = 0; i < bPos.count; i++){
+    let x = bPos.getX(i), y = bPos.getY(i), z = bPos.getZ(i);
+    // flatten to bean ellipsoid
+    x *= 0.70;
+    z *= 0.62;
+    // subtle pinch in the middle (waist)
+    const pinch = 1.0 - 0.12 * Math.exp(-y*y * 0.6);
+    x *= pinch; z *= pinch;
+    bPos.setXYZ(i, x, y, z);
+  }
+  beanGeo.computeVertexNormals();
+
+  const beanMat = new THREE.MeshStandardMaterial({
+    color:     0x3c1a06,
+    roughness: 0.58,
+    metalness: 0.18,
+    envMapIntensity: 0.6,
+  });
+  const beanMesh = new THREE.Mesh(beanGeo, beanMat);
+  beanMesh.castShadow = true;
+  beanGroup.add(beanMesh);
+
+  // Centre crease groove
+  const creasePts = [];
+  for(let i = 0; i <= 32; i++){
+    const a = (i/32)*Math.PI - Math.PI/2;
+    creasePts.push(new THREE.Vector3(0, Math.sin(a)*1.38, Math.cos(a)*1.38*0.62));
+  }
+  const creaseGeo = new THREE.TubeGeometry(
+    new THREE.CatmullRomCurve3(creasePts), 32, 0.058, 8, false
+  );
+  const creaseMat = new THREE.MeshStandardMaterial({ color:0x130602, roughness:0.95 });
+  beanGroup.add(new THREE.Mesh(creaseGeo, creaseMat));
+
+  // Specular highlight blob
+  const hlGeo = new THREE.SphereGeometry(0.32, 10, 10);
+  const hlMat = new THREE.MeshStandardMaterial({
+    color: 0xd08040, emissive: 0xf4cf7f, emissiveIntensity: 0.55,
+    roughness: 0.15, metalness: 0.3, transparent: true, opacity: 0.5
+  });
+  const hl = new THREE.Mesh(hlGeo, hlMat);
+  hl.position.set(-0.42, 0.72, 0.72);
+  beanGroup.add(hl);
+
+  // Secondary small highlight
+  const hl2Geo = new THREE.SphereGeometry(0.14, 8, 8);
+  const hl2Mat = new THREE.MeshStandardMaterial({
+    color: 0xffe0a0, emissive: 0xfff0c0, emissiveIntensity: 0.4,
+    roughness: 0.1, transparent: true, opacity: 0.35
+  });
+  const hl2 = new THREE.Mesh(hl2Geo, hl2Mat);
+  hl2.position.set(0.55, -0.5, 0.68);
+  beanGroup.add(hl2);
+
+  // ── GOLD "M" LETTER (canvas texture) ──
+  const mCanvas = document.createElement('canvas');
+  mCanvas.width = 256; mCanvas.height = 256;
+  const ctx = mCanvas.getContext('2d');
+  // Transparent background
+  ctx.clearRect(0, 0, 256, 256);
+  // Gold gradient text
+  const grad = ctx.createLinearGradient(0, 40, 0, 200);
+  grad.addColorStop(0,   '#f6e09a');
+  grad.addColorStop(0.4, '#f4cf7f');
+  grad.addColorStop(0.7, '#d9a441');
+  grad.addColorStop(1,   '#b8782e');
+  ctx.fillStyle = grad;
+  ctx.font = 'bold 170px "Georgia", serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('M', 128, 132);
+  // Subtle inner glow
+  ctx.shadowColor = 'rgba(244,207,127,0.6)';
+  ctx.shadowBlur = 18;
+  ctx.fillText('M', 128, 132);
+
+  const mTex = new THREE.CanvasTexture(mCanvas);
+  const mGeo = new THREE.PlaneGeometry(0.92, 0.92);
+  const mMat = new THREE.MeshStandardMaterial({
+    map: mTex, transparent: true, alphaTest: 0.05,
+    emissive: 0xf4cf7f, emissiveMap: mTex, emissiveIntensity: 0.28,
+    roughness: 0.3, metalness: 0.4, side: THREE.FrontSide
+  });
+  const mPlane = new THREE.Mesh(mGeo, mMat);
+  mPlane.position.set(0, 0, 0.91);
+  beanGroup.add(mPlane);
+
+  // "MOCHAYA TOKEN" small label below M
+  const lblCanvas = document.createElement('canvas');
+  lblCanvas.width = 400; lblCanvas.height = 60;
+  const lctx = lblCanvas.getContext('2d');
+  lctx.clearRect(0, 0, 400, 60);
+  lctx.fillStyle = 'rgba(242,212,138,0.85)';
+  lctx.font = '500 22px "Arial", sans-serif';
+  lctx.letterSpacing = '8px';
+  lctx.textAlign = 'center';
+  lctx.textBaseline = 'middle';
+  lctx.fillText('MOCHAYA TOKEN', 200, 30);
+  const lblTex = new THREE.CanvasTexture(lblCanvas);
+  const lblGeo = new THREE.PlaneGeometry(1.1, 0.16);
+  const lblMat = new THREE.MeshStandardMaterial({
+    map: lblTex, transparent: true, alphaTest: 0.02,
+    emissive: 0xf4cf7f, emissiveMap: lblTex, emissiveIntensity: 0.2,
+    roughness: 0.4
+  });
+  const lblPlane = new THREE.Mesh(lblGeo, lblMat);
+  lblPlane.position.set(0, -0.56, 0.91);
+  beanGroup.add(lblPlane);
+
+  // ── GOLD ORBITAL RINGS ────────────────
+  const ringMat = new THREE.MeshStandardMaterial({
+    color: 0xd9a441, emissive: 0xf4cf7f, emissiveIntensity: 0.45,
+    roughness: 0.25, metalness: 0.85
+  });
+  const ringMat2 = new THREE.MeshStandardMaterial({
+    color: 0xc47a28, emissive: 0xd9a441, emissiveIntensity: 0.3,
+    roughness: 0.35, metalness: 0.75, transparent: true, opacity: 0.7
+  });
+
+  // Ring 1 — equatorial
+  const ring1 = new THREE.Mesh(new THREE.TorusGeometry(2.0, 0.035, 8, 80), ringMat);
+  ring1.rotation.x = Math.PI * 0.05;
+  scene.add(ring1);
+
+  // Ring 2 — tilted
+  const ring2 = new THREE.Mesh(new THREE.TorusGeometry(2.35, 0.022, 6, 80), ringMat2);
+  ring2.rotation.x = Math.PI * 0.42;
+  ring2.rotation.z = Math.PI * 0.15;
+  scene.add(ring2);
+
+  // Ring 3 — outer faint
+  const ring3 = new THREE.Mesh(
+    new THREE.TorusGeometry(2.7, 0.012, 5, 80),
+    new THREE.MeshStandardMaterial({ color:0xd9a441, emissive:0xf4cf7f, emissiveIntensity:0.2, roughness:0.5, metalness:0.6, transparent:true, opacity:0.4 })
+  );
+  ring3.rotation.x = Math.PI * 0.28;
+  ring3.rotation.y = Math.PI * 0.1;
+  scene.add(ring3);
+
+  // ── FLOATING BEAN SATELLITES ──────────
+  // Small coffee beans orbiting the main one
+  const satBeans = [];
+  const satData = [
+    { orbitR: 2.6, orbitSpeed: 0.38, phase: 0,           tilt: 0.3,  scale: 0.28 },
+    { orbitR: 2.2, orbitSpeed: -0.28, phase: Math.PI*0.7, tilt: -0.5, scale: 0.22 },
+    { orbitR: 3.0, orbitSpeed: 0.18,  phase: Math.PI*1.4, tilt: 0.7,  scale: 0.18 },
+  ];
+  satData.forEach(d => {
+    const sg = new THREE.SphereGeometry(0.42, 20, 20);
+    const sp = sg.attributes.position;
+    for(let i=0;i<sp.count;i++){
+      sp.setX(i, sp.getX(i)*0.68);
+      sp.setZ(i, sp.getZ(i)*0.60);
+    }
+    sg.computeVertexNormals();
+    const sm = new THREE.Mesh(sg, beanMat.clone());
+    sm.scale.setScalar(d.scale);
+    sm.castShadow = true;
+    // crease on satellite
+    const scPts = [];
+    for(let i=0;i<=12;i++){
+      const a=(i/12)*Math.PI-Math.PI/2;
+      scPts.push(new THREE.Vector3(0, Math.sin(a)*0.4, Math.cos(a)*0.4*0.60));
+    }
+    const scG = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(scPts),12,0.04,6,false);
+    sm.add(new THREE.Mesh(scG, creaseMat));
+    scene.add(sm);
+    satBeans.push({ mesh: sm, ...d });
+  });
+
+  // ── GOLD DUST PARTICLES ───────────────
+  const DUST = 120;
+  const dustPos = new Float32Array(DUST * 3);
+  const dustSizes = new Float32Array(DUST);
+  for(let i=0;i<DUST;i++){
+    // Scatter in a shell around the bean
+    const theta = Math.random()*Math.PI*2;
+    const phi   = Math.acos(2*Math.random()-1);
+    const r     = 1.8 + Math.random()*2.8;
+    dustPos[i*3]   = r * Math.sin(phi) * Math.cos(theta);
+    dustPos[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
+    dustPos[i*3+2] = r * Math.cos(phi);
+    dustSizes[i]   = 0.03 + Math.random()*0.05;
+  }
+  const dustGeo = new THREE.BufferGeometry();
+  dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
+  const dustMat = new THREE.PointsMaterial({
+    color: 0xf4cf7f, size: 0.055, transparent: true, opacity: 0.55,
+    sizeAttenuation: true
+  });
+  const dust = new THREE.Points(dustGeo, dustMat);
+  scene.add(dust);
+
+  // ── TEA LEAVES ORBITING ───────────────
+  function makeLeafMesh(scale, colorHex){
+    const shape = new THREE.Shape();
+    shape.moveTo(0, 0.7);
+    shape.bezierCurveTo( 0.32,  0.5,  0.42,  0.18,  0.25, -0.22);
+    shape.bezierCurveTo( 0.14, -0.52,  0.04, -0.68,  0.0, -0.70);
+    shape.bezierCurveTo(-0.04, -0.68, -0.14, -0.52, -0.25, -0.22);
+    shape.bezierCurveTo(-0.42,  0.18, -0.32,  0.5,   0.0,  0.70);
+
+    const geo = new THREE.ShapeGeometry(shape, 14);
+    const mat = new THREE.MeshStandardMaterial({
+      color: colorHex,
+      roughness: 0.75,
+      metalness: 0.0,
+      side: THREE.DoubleSide,
+      transparent: true,
+      opacity: 0.88,
+    });
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.scale.setScalar(scale);
+
+    // Centre vein
+    const veinPts = [
+      new THREE.Vector3(0,  0.68 * scale, 0.001),
+      new THREE.Vector3(0, -0.68 * scale, 0.001),
+    ];
+    const veinG = new THREE.BufferGeometry().setFromPoints(veinPts);
+    const veinM = new THREE.LineBasicMaterial({ color: 0x5ab854, transparent:true, opacity:0.55 });
+    mesh.add(new THREE.Line(veinG, veinM));
+
+    // Side veins
+    const sideVeinData = [
+      [new THREE.Vector3(0, 0.35*scale, 0.001), new THREE.Vector3( 0.22*scale, 0.15*scale, 0.001)],
+      [new THREE.Vector3(0, 0.10*scale, 0.001), new THREE.Vector3( 0.26*scale,-0.08*scale, 0.001)],
+      [new THREE.Vector3(0,-0.15*scale, 0.001), new THREE.Vector3( 0.22*scale,-0.30*scale, 0.001)],
+      [new THREE.Vector3(0, 0.35*scale, 0.001), new THREE.Vector3(-0.22*scale, 0.15*scale, 0.001)],
+      [new THREE.Vector3(0, 0.10*scale, 0.001), new THREE.Vector3(-0.26*scale,-0.08*scale, 0.001)],
+      [new THREE.Vector3(0,-0.15*scale, 0.001), new THREE.Vector3(-0.22*scale,-0.30*scale, 0.001)],
+    ];
+    sideVeinData.forEach(pts => {
+      const g = new THREE.BufferGeometry().setFromPoints(pts);
+      mesh.add(new THREE.Line(g, veinM));
+    });
+
+    return mesh;
+  }
+
+  const leafColors = [0x2d6b28, 0x3a8a33, 0x1e5020, 0x4aaa44, 0x255a22, 0x347830];
+  const TEA_LEAVES = 14;
+  const teaLeaves = [];
+
+  // Each leaf gets an orbital plane + own spin data
+  for(let i = 0; i < TEA_LEAVES; i++){
+    const color  = leafColors[i % leafColors.length];
+    const scale  = 0.28 + Math.random() * 0.22;
+    const leaf   = makeLeafMesh(scale, color);
+
+    // Orbit parameters — spread across different inclinations
+    const orbitR     = 2.0 + Math.random() * 1.4;
+    const orbitSpeed = (0.18 + Math.random() * 0.22) * (Math.random()<0.5 ? 1 : -1);
+    const phase      = (i / TEA_LEAVES) * Math.PI * 2;
+    const inclination= (Math.random() - 0.5) * Math.PI * 0.85; // tilt of orbit plane
+    const yOffset    = (Math.random() - 0.5) * 1.2;
+    const spinX      = (Math.random()-0.5)*0.04;
+    const spinY      = (Math.random()-0.5)*0.03;
+    const spinZ      = (Math.random()-0.5)*0.025;
+
+    leaf.userData = { orbitR, orbitSpeed, phase, inclination, yOffset, spinX, spinY, spinZ };
+    scene.add(leaf);
+    teaLeaves.push(leaf);
+  }
+
+  // ── MOUSE PARALLAX ────────────────────
+  let mx = 0, my = 0;
+  const cardEl = canvas.parentElement;
+  cardEl.addEventListener('mousemove', e => {
+    const r = cardEl.getBoundingClientRect();
+    mx = ((e.clientX - r.left)/r.width  - 0.5) * 2;
+    my = ((e.clientY - r.top )/r.height - 0.5) * 2;
+  });
+  cardEl.addEventListener('mouseleave', () => { mx=0; my=0; });
+
+  // ── ANIMATE ───────────────────────────
+  let t = 0;
+  function animate(){
+    requestAnimationFrame(animate);
+    t += 0.012;
+
+    // Main bean — slow auto-rotate + mouse tilt
+    beanGroup.rotation.y += 0.004;
+    beanGroup.rotation.x  = Math.sin(t*0.45) * 0.08 - my * 0.14;
+    beanGroup.rotation.z  = mx * 0.09;
+    beanGroup.position.y  = Math.sin(t*0.55) * 0.07;
+
+    // Keep M label always facing camera (billboard)
+    mPlane.rotation.y  = -beanGroup.rotation.y;
+    lblPlane.rotation.y = -beanGroup.rotation.y;
+
+    // Orbital rings
+    ring1.rotation.y = t * 0.28;
+    ring2.rotation.z = t * 0.18;
+    ring3.rotation.y = -t * 0.14;
+
+    // Satellite beans orbit
+    satBeans.forEach(s => {
+      const angle = t * s.orbitSpeed + s.phase;
+      s.mesh.position.set(
+        Math.cos(angle) * s.orbitR,
+        Math.sin(angle * 0.6 + s.tilt) * 0.8,
+        Math.sin(angle) * s.orbitR * 0.5
+      );
+      s.mesh.rotation.x += 0.02;
+      s.mesh.rotation.y += 0.015;
+    });
+
+    // Tea leaves orbit
+    teaLeaves.forEach(leaf => {
+      const d = leaf.userData;
+      const angle = t * d.orbitSpeed + d.phase;
+      const x = Math.cos(angle) * d.orbitR;
+      const z = Math.sin(angle) * d.orbitR * Math.cos(d.inclination);
+      const y = Math.sin(angle) * d.orbitR * Math.sin(d.inclination) + d.yOffset;
+      leaf.position.set(x, y, z);
+      leaf.rotation.x += d.spinX;
+      leaf.rotation.y += d.spinY;
+      leaf.rotation.z += d.spinZ;
+    });
+
+    // Gold dust slow spin
+    dust.rotation.y += 0.0018;
+    dust.rotation.x  = Math.sin(t*0.2) * 0.05;
+
+    // Gold light orbit for dynamic sheen
+    goldPt.position.x = Math.cos(t*0.5) * 3;
+    goldPt.position.z = Math.sin(t*0.5) * 3;
+    goldPt.intensity  = 2.0 + Math.sin(t*1.8)*0.5;
+
+    // Ring pulse
+    ring1.material.emissiveIntensity = 0.35 + Math.sin(t*2.2)*0.18;
+    ring2.material.emissiveIntensity = 0.25 + Math.sin(t*1.7+1)*0.12;
+
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+</script>
+</body>
+</html>
